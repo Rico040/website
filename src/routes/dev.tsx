@@ -1,4 +1,4 @@
-import { type Component, createSignal, For, useContext } from 'solid-js'
+import { type Component, For, createSignal, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
 
 import {
@@ -8,21 +8,21 @@ import {
     IconButton,
     type IconType,
     LinkButton,
+    LinkCard,
     NavDock,
     Page,
     Row,
     Section,
-    LinkCard,
 } from '~/components'
 import { HoverZoomRepel } from '~/components/effects'
 
 import { undefinedIf } from '~/utils'
 
+import { Dynamic } from 'solid-js/web'
 import IconSource from '~/assets/icons/source.svg'
+import GlowingBackground from '~/components/effects/GlowingBackground'
 import { RepositoryLinks } from '~/constants/links'
 import { ConfettiContext, ThemeContext } from '~/contexts'
-import { Dynamic } from 'solid-js/web'
-import GlowingBackground from '~/components/effects/GlowingBackground'
 
 export default (() => {
     const [isGlowEffectOn, setIsGlowEffectOn] = createSignal(false)

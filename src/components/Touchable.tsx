@@ -10,19 +10,19 @@ import styles from './Touchable.module.scss'
 const Touchable = <E extends ElementType>(
     props: TouchableProps<E> & Omit<ComponentProps<E>, keyof TouchableProps<E>>,
 ) => {
-    const [local, others] = splitProps(props, ['as', 'class', 'asProps', 'withoutHoverInteractionEffect'])
+    const [, others] = splitProps(props, ['as', 'class', 'asProps', 'withoutHoverInteractionEffect'])
 
     return (
         <Dynamic
             class={combineClassNames(
                 styles.Container,
-                undefinedIf(!local.withoutHoverInteractionEffect, styles.WithoutHoverInteractionEffect),
+                undefinedIf(!props.withoutHoverInteractionEffect, styles.WithoutHoverInteractionEffect),
                 props.class,
             )}
-            ref={undefinedIf(local.withoutHoverInteractionEffect, handleDynamicRef)}
-            component={local.as ?? 'div'}
+            ref={undefinedIf(props.withoutHoverInteractionEffect, handleDynamicRef)}
+            component={props.as ?? 'div'}
             {...others}
-            {...local.asProps}
+            {...props.asProps}
         />
     )
 }

@@ -1,12 +1,12 @@
 import { Link, Meta } from '@solidjs/meta'
 import { useLocation } from '@solidjs/router'
-import { type Component, type ComponentProps, type JSX, mergeProps, splitProps, Show } from 'solid-js'
+import { type Component, type ComponentProps, type JSX, Show, mergeProps, splitProps } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 
 import { combineClassNames, undefinedIf } from '~/utils'
 
-import styles from './Page.module.scss'
 import sharedStyles from '~/styles/shared.module.scss'
+import styles from './Page.module.scss'
 
 export const Page: Component<ComponentProps<'main'> & { noCrawl?: boolean; noSetCanonical?: boolean }> = props => {
     const loc = useLocation()

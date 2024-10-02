@@ -1,9 +1,9 @@
-import { createSignal, onMount, type JSX, For, createEffect } from 'solid-js'
+import { For, type JSX, createEffect, createSignal, onMount } from 'solid-js'
 import { Row } from './Page'
 import { Button } from './buttons'
 
-import styles from './BottomBanner.module.scss'
 import { Portal } from 'solid-js/web'
+import styles from './BottomBanner.module.scss'
 
 const BottomBanner = (props: BottomBarProps) => {
     const [shouldOpen, setShouldOpen] = createSignal(false)

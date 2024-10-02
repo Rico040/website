@@ -1,7 +1,3 @@
-import IconFastify from '~/assets/icons/fastify.svg'
-
-import type { IconType } from '~/components'
-
 const Skills = [
     {
         name: 'HTML',
@@ -45,7 +41,7 @@ const Skills = [
     },
     {
         name: 'Fastify',
-        icon: IconFastify,
+        icon: '/assets/images/skills/fastify.svg',
         link: 'https://fastify.io',
     },
     {
@@ -55,7 +51,7 @@ const Skills = [
     },
     {
         name: 'Linux (Basics)',
-        icon: '/assets/images/skills/linux.svg',
+        icon: '/assets/images/skills/linux.webp',
         link: 'https://en.wikipedia.org/wiki/Linux',
     },
     {
@@ -70,7 +66,7 @@ const Skills = [
     },
 ] as const satisfies Array<{
     name: string
-    icon: string | IconType
+    icon: string
     link: string
 }>
 

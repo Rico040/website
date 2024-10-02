@@ -9,7 +9,16 @@ import { combineClassNames, undefinedIf } from '~/utils'
 import styles from './LinkCard.module.scss'
 
 const LinkCard: Component<LinkCardProps> = props => {
-    const [, aProps] = splitProps(props, ['name', 'description', 'preview', 'hint', 'openInCurrentTab', 'class', 'target', 'href']) 
+    const [, aProps] = splitProps(props, [
+        'name',
+        'description',
+        'preview',
+        'hint',
+        'openInCurrentTab',
+        'class',
+        'target',
+        'href',
+    ])
 
     return (
         <Touchable

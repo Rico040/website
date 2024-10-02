@@ -34,7 +34,6 @@ export default (() => {
                 <Meta property="og:image:type" content="image/webp" />
                 <Section constrainSize style="padding-block: min(8vh, var(--gap-insanely-large));">
                     <Column gap="none" class={sharedStyles.DirectTextChildrenAlignCenter}>
-                        {/* biome-ignore lint/a11y/useHeadingContent: Screen readers kinda suck, so here's a workaround */}
                         <h1 aria-label="Hey there, I'm Palm">
                             <span aria-hidden="true">Hey there, I'm </span>
                             <span
@@ -107,18 +106,14 @@ export default (() => {
                                         class={styles.SkillContainer}
                                         centerVertical
                                     >
-                                        {typeof skill.icon === 'function' ? (
-                                            <skill.icon class={styles.SkillIcon} />
-                                        ) : (
-                                            <img
-                                                aria-hidden="true"
-                                                class={styles.SkillIcon}
-                                                draggable="false"
-                                                src={skill.icon}
-                                                loading="lazy"
-                                                alt={`${skill.name} logo`}
-                                            />
-                                        )}
+                                        <img
+                                            aria-hidden="true"
+                                            class={styles.SkillIcon}
+                                            draggable="false"
+                                            src={skill.icon}
+                                            loading="lazy"
+                                            alt={`${skill.name} logo`}
+                                        />
                                         <span>{skill.name}</span>
                                     </Touchable>
                                 </li>

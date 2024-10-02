@@ -1,16 +1,16 @@
-import { type Component, type JSX, Suspense, Show, onMount, onCleanup, createSignal } from 'solid-js'
 import JSConfetti from 'js-confetti'
+import { type Component, type JSX, Show, Suspense, createSignal, onCleanup, onMount } from 'solid-js'
 import { format } from 'timeago.js'
 
-import { NavDock, BottomBanner, Button } from '~/components'
+import { BottomBanner, Button, NavDock } from '~/components'
 import { Birthday, BirthdayEnd, BirthdayLocale } from '~/constants/personal'
 
 import IconBlog from '~/assets/icons/nav/blog.svg'
 import IconHome from '~/assets/icons/nav/home.svg'
 import IconSource from '~/assets/icons/source.svg'
 
-import sharedStyles from '~/styles/shared.module.scss'
 import { ConfettiContext } from '~/contexts'
+import sharedStyles from '~/styles/shared.module.scss'
 
 const GlobalLayout: Component<{ children: JSX.Element }> = props => {
     const [time, setTime] = createSignal<string | null>('...')

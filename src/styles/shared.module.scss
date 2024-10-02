@@ -1,6 +1,6 @@
 .GradientText {
   @media not (prefers-contrast: more) {
-    font-weight: var(--weight-bolder);
+    font-weight: var(--weight-bold);
     color: var(--neutral-highest);
     background: var(--gradient);
     background-clip: text;
