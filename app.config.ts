@@ -1,10 +1,10 @@
 import { execSync, spawnSync } from 'child_process'
 import { defineConfig } from '@solidjs/start/config'
-import svgPlugin from 'vite-plugin-solid-svg'
 import mdx from '@vinxi/plugin-mdx'
 import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
 import remarkSlug from 'remark-slug'
+import svgPlugin from 'vite-plugin-solid-svg'
 
 const defineString = (str?: string) => `"${str || 'unknown'}"`
 
