@@ -3,13 +3,7 @@ import { createStore } from 'solid-js/store'
 import { ThemeCycleMap } from './constants/theme'
 import { logger } from './utils'
 
-export const ThemeContext = createContext<ThemeStruct>({
-    theme: 'auto',
-    colorScheme: 'light',
-    set: () => {},
-    cycle: () => {},
-    initialized: false,
-})
+export const ThemeContext = createContext<ThemeStruct>(undefined as unknown as ThemeStruct)
 
 export const ThemeProvider: Component<{ children: JSX.Element | JSX.Element[] }> = props => {
     const [theme, setTheme] = createStore<ThemeStruct>({
@@ -61,9 +55,10 @@ export const ThemeProvider: Component<{ children: JSX.Element | JSX.Element[] }>
     return <ThemeContext.Provider value={theme}>{props.children}</ThemeContext.Provider>
 }
 
-export const ConfettiContext = createContext<{ launch: () => void }>({
-    launch: () => {},
-})
+export const ConfettiContext = createContext<ConfettiStruct>(undefined as unknown as ConfettiStruct)
+
+// This can only be used inside of BottomBanner actions, so it should be nullable to prevent misuse
+export const BottomBannerContext = createContext<BottomBannerStruct>()
 
 export interface ThemeStruct {
     theme: ThemeTheme
@@ -75,3 +70,11 @@ export interface ThemeStruct {
 
 export type ThemeColorScheme = 'light' | 'dark'
 export type ThemeTheme = ThemeColorScheme | 'auto'
+
+export interface ConfettiStruct {
+    launch(): void
+}
+
+export interface BottomBannerStruct {
+    close(): void
+}
