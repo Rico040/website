@@ -20,12 +20,12 @@ const BottomBanner = (props: BottomBarProps) => {
     let ref: HTMLDivElement | undefined
 
     const setClosedByUser = () => localStorage.setItem(getStorageKey(props.id), 'true')
-    const animateOpen = () => ref!.style.removeProperty('bottom')
-    const animateClose = () =>
+    const animateOpen = () => ref?.style.removeProperty('bottom')
+    const animateClose = () => {
         // Really bad workaround because for some reason, getting the pseudo element height doesn't work (returns auto)
         // 2 pixels because 1 looks weird.
-        // biome-ignore lint/suspicious/noAssignInExpressions: Doesn't matter
-        (ref!.style.bottom = `calc(-${ref!.getBoundingClientRect().height}px - 2px)`)
+        if (ref) ref.style.bottom = `calc(-${ref.getBoundingClientRect().height}px - 2px)`
+    }
 
     const setShouldOpen = (value: boolean) => {
         if (value) animateOpen()
