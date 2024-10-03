@@ -6,7 +6,7 @@ import { Column, LinkButton, LinkIconButton, Page, ProjectCard, Row, Section, To
 import IconDiscord from '~/assets/icons/discord.svg'
 import IconMail from '~/assets/icons/mail.svg'
 
-import { BirthDate } from '~/constants/personal'
+import { BirthDate } from '~/constants/events'
 import Projects from '~/constants/projects'
 import Skills from '~/constants/skills'
 import Socials from '~/constants/socials'

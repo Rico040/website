@@ -7,6 +7,9 @@ export const Birthday = new Date(`${year}-07-01 00:00:00 UTC+7`)
 export const BirthdayEnd = new Date(`${year}-07-02 00:00:00 UTC+7`)
 export const BirthdayLocale = 'birthday-locale'
 
+export const Halloween = new Date(`${year}-10-01 00:00:00`)
+export const HalloweenEnd = new Date(`${year}-11-01 00:00:00`)
+
 register(
     BirthdayLocale,
     (_: number, index: number, __?: number): [string, string] =>

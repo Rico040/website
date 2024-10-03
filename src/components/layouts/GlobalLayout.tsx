@@ -4,7 +4,7 @@ import { type Component, type JSX, Show, Suspense, createSignal, onCleanup, onMo
 import { format } from 'timeago.js'
 
 import { BottomBanner, Button, NavDock } from '~/components'
-import { Birthday, BirthdayEnd, BirthdayLocale } from '~/constants/personal'
+import { Birthday, BirthdayLocale } from '~/constants/events'
 
 import IconBlog from '~/assets/icons/nav/blog.svg'
 import IconHome from '~/assets/icons/nav/home.svg'
@@ -13,11 +13,13 @@ import IconSource from '~/assets/icons/source.svg'
 import { BottomBannerContext, ConfettiContext, ThemeContext } from '~/contexts'
 import sharedStyles from '~/styles/shared.module.scss'
 
-const ClientOnlyShow = clientOnly(async () => ({ default: Show }))
-
 const GlobalLayout: Component<{ children: JSX.Element }> = props => {
     const theme = useContext(ThemeContext)
     const [time, setTime] = createSignal<string | null>('...')
+    const isBirthday =
+        typeof globalThis.document !== 'undefined' ? document.documentElement.dataset.event === 'birthday' : true
+    const isHalloween =
+        typeof globalThis.document !== 'undefined' ? document.documentElement.dataset.event === 'halloween' : true
 
     let canvasRef: HTMLCanvasElement | undefined
     let confetti: JSConfetti | undefined
@@ -44,16 +46,12 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
     onMount(() => {
         confetti = new JSConfetti({ canvas: canvasRef })
 
-        if (Date.now() > Birthday.getTime()) return
+        if (!isBirthday) return
 
         const interval = setInterval(() => {
-            if (Date.now() >= Birthday.getTime()) {
-                launchConfetti()
-                setTime(null)
-                clearInterval(interval)
-                return
-            }
-
+            launchConfetti()
+            setTime(null)
+            clearInterval(interval)
             setTime(format(Birthday, BirthdayLocale))
         }, 1000)
 
@@ -80,7 +78,7 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                 ]}
             />
             <Suspense>{props.children}</Suspense>
-            <ClientOnlyShow keyed when={Date.now() < BirthdayEnd.getTime()}>
+            <Show when={isBirthday}>
                 <BottomBanner
                     id={`${new Date().getFullYear()}-bd`}
                     closeLabel="Close"
@@ -100,8 +98,8 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                         </Show>
                     </p>
                 </BottomBanner>
-            </ClientOnlyShow>
-            <ClientOnlyShow keyed when={document.documentElement.dataset.event === 'halloween'}>
+            </Show>
+            <Show when={isHalloween}>
                 <BottomBanner
                     id={`${new Date().getFullYear()}-halloween`}
                     closeLabel="I'll pass"
@@ -141,7 +139,7 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                         Enjoy this cool theme for a limited time! 🍬
                     </p>
                 </BottomBanner>
-            </ClientOnlyShow>
+            </Show>
         </ConfettiContext.Provider>
     )
 }
