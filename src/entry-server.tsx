@@ -23,9 +23,11 @@ export default createHandler(() => (
                     <link rel="preconnect" href="https://fonts.bunny.net" as="font" />
                     {assets}
                 </head>
+                {/* Handles themes and events, has to be manually minified */}
                 <script>
-                    document.documentElement.dataset.theme = localStorage.getItem('theme_override') ??
-                    (matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark')
+                    d=document.documentElement.dataset;
+                    d.theme=localStorage.getItem('theme_override')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
+                    new Date().getMonth()==9&&(d.event='halloween')
                 </script>
                 <body>
                     <noscript>You will need to enable JavaScript to run this site.</noscript>

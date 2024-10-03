@@ -1,5 +1,6 @@
+import { clientOnly } from '@solidjs/start'
 import JSConfetti from 'js-confetti'
-import { type Component, type JSX, Show, Suspense, createSignal, onCleanup, onMount } from 'solid-js'
+import { type Component, type JSX, Show, Suspense, createSignal, onCleanup, onMount, useContext } from 'solid-js'
 import { format } from 'timeago.js'
 
 import { BottomBanner, Button, NavDock } from '~/components'
@@ -9,10 +10,13 @@ import IconBlog from '~/assets/icons/nav/blog.svg'
 import IconHome from '~/assets/icons/nav/home.svg'
 import IconSource from '~/assets/icons/source.svg'
 
-import { ConfettiContext } from '~/contexts'
+import { BottomBannerContext, ConfettiContext, ThemeContext } from '~/contexts'
 import sharedStyles from '~/styles/shared.module.scss'
 
+const ClientOnlyShow = clientOnly(async () => ({ default: Show }))
+
 const GlobalLayout: Component<{ children: JSX.Element }> = props => {
+    const theme = useContext(ThemeContext)
     const [time, setTime] = createSignal<string | null>('...')
 
     let canvasRef: HTMLCanvasElement | undefined
@@ -25,6 +29,15 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
             confettiColors: ['primary', 'secondary'].map(token =>
                 getComputedStyle(document.documentElement).getPropertyValue(`--gradient-${token}`),
             ),
+        })
+    }
+
+    const launchHalloweenConfetti = () => {
+        confetti?.addConfetti({
+            confettiRadius: 8,
+            confettiNumber: 5,
+            emojiSize: 72,
+            emojis: ['👻', '🎃', '💀'],
         })
     }
 
@@ -67,13 +80,12 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                 ]}
             />
             <Suspense>{props.children}</Suspense>
-            <Show when={Date.now() < BirthdayEnd.getTime()}>
+            <ClientOnlyShow keyed when={Date.now() < BirthdayEnd.getTime()}>
                 <BottomBanner
                     id={`${new Date().getFullYear()}-bd`}
                     closeLabel="Close"
                     onClose={launchConfetti}
-                    // biome-ignore lint/correctness/useJsxKeyInIterable: This isn't React
-                    actions={[<Button onClick={launchConfetti}>Launch confetti 🎉</Button>]}
+                    actions={() => <Button onClick={launchConfetti}>Launch confetti 🎉</Button>}
                 >
                     <p style="margin: 0">
                         <Show
@@ -88,7 +100,48 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                         </Show>
                     </p>
                 </BottomBanner>
-            </Show>
+            </ClientOnlyShow>
+            <ClientOnlyShow keyed when={document.documentElement.dataset.event === 'halloween'}>
+                <BottomBanner
+                    id={`${new Date().getFullYear()}-halloween`}
+                    closeLabel="I'll pass"
+                    openState="unless-closed-by-user"
+                    open={theme.colorScheme !== 'dark'}
+                    actions={() => {
+                        const bottomBanner = useContext(BottomBannerContext)
+
+                        return (
+                            <Button
+                                variant="primary"
+                                onClick={() => {
+                                    theme.set('dark')
+                                    launchHalloweenConfetti()
+                                    bottomBanner?.close()
+                                }}
+                            >
+                                Okay
+                            </Button>
+                        )
+                    }}
+                >
+                    <p style="margin: 0">
+                        <span class={sharedStyles.GradientText}>Happy Halloween!</span> Turn on dark mode for a more
+                        spooky experience. bOoOo 👻!
+                    </p>
+                </BottomBanner>
+                <BottomBanner
+                    id={`${new Date().getFullYear()}-halloween`}
+                    onClose={launchHalloweenConfetti}
+                    openState="unless-closed-by-user"
+                    open={theme.colorScheme !== 'light'}
+                >
+                    <p style="margin: 0">
+                        <span class={sharedStyles.GradientText}>Happy Halloween</span>, visitor! 🎃
+                        <br />
+                        Enjoy this cool theme for a limited time! 🍬
+                    </p>
+                </BottomBanner>
+            </ClientOnlyShow>
         </ConfettiContext.Provider>
     )
 }
