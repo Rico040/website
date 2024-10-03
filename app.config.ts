@@ -40,7 +40,17 @@ export default defineConfig({
                 jsxImportSource: 'solid-js',
                 providerImportSource: 'solid-mdx',
                 remarkPlugins: [remarkGfm, remarkSlug],
-                rehypePlugins: [[rehypePrettyCode, {}]],
+                rehypePlugins: [
+                    [
+                        rehypePrettyCode,
+                        {
+                            theme: {
+                                dark: 'github-dark-dimmed',
+                                light: 'github-light',
+                            },
+                        },
+                    ],
+                ],
             }),
             svgPlugin({ defaultAsComponent: true }),
         ],

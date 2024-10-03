@@ -68,6 +68,16 @@
       color: var(--neutral-lowest);
       margin-right: var(--gap-large);
     }
+    
+    & code[data-theme*=" "] span {
+        color: var(--shiki-light);
+    }
+     
+    :root[data-theme="dark"] & {
+      & code[data-theme*=" "] span {
+        color: var(--shiki-dark);
+      }
+    }
   }
 
   & img {
