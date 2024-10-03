@@ -34,7 +34,7 @@ export default (() => {
                                             class={styles.PostCard}
                                             name={info.title}
                                             description={info.description}
-                                            href={`/blog/${href}/`}
+                                            href={`/blog/${href}`}
                                             preview={() => (
                                                 <div class={styles.PostCardImageContainer}>
                                                     <img
