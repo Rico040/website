@@ -1,9 +1,11 @@
-import { clientOnly } from '@solidjs/start'
 import JSConfetti from 'js-confetti'
 import { type Component, type JSX, Show, Suspense, createSignal, onCleanup, onMount, useContext } from 'solid-js'
 import { format } from 'timeago.js'
 
-import { BottomBanner, Button, NavDock } from '~/components'
+import BottomBanner from '../BottomBanner'
+import NavDock from '../NavDock'
+import { Button } from '../buttons/Button'
+
 import { Birthday, BirthdayLocale } from '~/constants/events'
 
 import IconBlog from '~/assets/icons/nav/blog.svg'

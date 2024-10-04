@@ -2,7 +2,9 @@ import { Link, Meta, Title } from '@solidjs/meta'
 import { HttpStatusCode } from '@solidjs/start'
 import { type Component, Show } from 'solid-js'
 
-import { Column, LinkButton, Page, Row, Section } from '~/components'
+import { Column, Page, Row, Section } from '~/components/Page'
+import { LinkButton } from '~/components/buttons/Button'
+
 import { RepositoryLinks } from '~/constants/links'
 
 import IconHome from '~/assets/icons/nav/home.svg'

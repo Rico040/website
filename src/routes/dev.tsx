@@ -1,28 +1,24 @@
 import { type Component, For, createSignal, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
+import { Dynamic } from 'solid-js/web'
 
-import {
-    Button,
-    Column,
-    Divider,
-    IconButton,
-    type IconType,
-    LinkButton,
-    LinkCard,
-    NavDock,
-    Page,
-    Row,
-    Section,
-} from '~/components'
-import { HoverZoomRepel } from '~/components/effects'
+import Divider from '~/components/Divider'
+import LinkCard from '~/components/LinkCard'
+import NavDock from '~/components/NavDock'
+import { Column, Page, Row, Section } from '~/components/Page'
+// TODO: Link buttons? They look the same, does it matter?
+import { Button, IconButton } from '~/components/buttons'
+import GlowingBackground from '~/components/effects/GlowingBackground'
 
 import { undefinedIf } from '~/utils'
 
-import { Dynamic } from 'solid-js/web'
 import IconSource from '~/assets/icons/source.svg'
-import GlowingBackground from '~/components/effects/GlowingBackground'
+
 import { RepositoryLinks } from '~/constants/links'
+
 import { ConfettiContext, ThemeContext } from '~/contexts'
+
+import type { IconType } from '~/components'
 
 export default (() => {
     const [isGlowEffectOn, setIsGlowEffectOn] = createSignal(false)
@@ -98,26 +94,6 @@ export default (() => {
                                 <p>Body</p>
                             </Column>
                         </Section>
-                        <Section constrainSize>
-                            <Column flex>
-                                <h2>Effects</h2>
-                                <h3>Hover zoom repel</h3>
-                                <HoverZoomRepel as="p">
-                                    This element hates getting near the cursor, but it gets zoomed in anyway.
-                                    <br />
-                                    So it tries to move away from the cursor.
-                                    <br />
-                                    Hover and move your cursor to see the effect.
-                                </HoverZoomRepel>
-                                <HoverZoomRepel tiltScale="2" tiltPerspective="100px" as="p">
-                                    To see this effect more clearly:
-                                    <br />
-                                    Up the tilt scale and lower the tilt perspective.
-                                    <br />
-                                    Like so.
-                                </HoverZoomRepel>
-                            </Column>
-                        </Section>
                     </Row>
                     <Section>
                         <Column>
@@ -171,17 +147,6 @@ export default (() => {
                                                 <Button {...buttonProps} variant={variant}>
                                                     {variant}
                                                 </Button>
-                                            )}
-                                        </For>
-                                        <For each={['primary', 'secondary', 'tertiary'] as const}>
-                                            {variant => (
-                                                <LinkButton
-                                                    href="https://palmdevs.me"
-                                                    {...buttonProps}
-                                                    variant={variant}
-                                                >
-                                                    {variant}
-                                                </LinkButton>
                                             )}
                                         </For>
                                     </Row>

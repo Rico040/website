@@ -31,7 +31,7 @@
       transparent
     );
 
-    z-index: var(--layer-bg);
+    z-index: var(--layer-effect);
   }
 
   &:where(:hover, :focus-visible) {

@@ -2,7 +2,7 @@ import { type Component, For, type JSX, createEffect, createSignal, onCleanup, o
 import { Portal } from 'solid-js/web'
 
 import { ThemeContext } from '~/contexts'
-import { logger } from '~/utils'
+import { logger, runAfterFramePaint } from '~/utils'
 import styles from './GlowingBackground.module.scss'
 
 const GlowingBackground: Component<{
@@ -75,14 +75,12 @@ const GlowingBackground: Component<{
             // Randomize initial positions
             animateGlow(elements)
             // Requesting the next frame so the randomized positions are already rendered
-            requestAnimationFrame(() => {
+            runAfterFramePaint(() => {
                 // Randomize them again so it animates while it's still invisible
-                requestAnimationFrame(() => animateGlow(elements))
+                animateGlow(elements)
                 // Finally make it visible
-                requestAnimationFrame(() => {
-                    ref.style.removeProperty('opacity')
-                    log('log', 'Component visuals ready')
-                })
+                ref.style.removeProperty('opacity')
+                log('log', 'Component visuals ready')
             })
 
             const interval = setInterval(() => animateGlow(elements), props.reanimateInterval ?? 30000)

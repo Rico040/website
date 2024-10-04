@@ -43,7 +43,6 @@ main {
   -webkit-tap-highlight-color: transparent;
   // Fixes precision issues with outline
   outline-offset: -1px;
-  backface-visibility: hidden;
 }
 
 :root {

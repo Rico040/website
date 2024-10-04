@@ -1,6 +1,8 @@
 import { type Component, type JSX, Suspense, onCleanup, onMount } from 'solid-js'
 
-import { IconButton, Page } from '~/components'
+import { Page } from '../Page'
+import { IconButton } from '../buttons/IconButton'
+
 import { logger } from '~/utils'
 
 import IconUp from '~/assets/icons/up.svg'

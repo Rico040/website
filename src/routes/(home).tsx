@@ -1,7 +1,10 @@
 import { Meta, Title } from '@solidjs/meta'
 import { type Component, For } from 'solid-js'
 
-import { Column, LinkButton, LinkIconButton, Page, ProjectCard, Row, Section, Touchable } from '~/components'
+import { Column, Page, Row, Section } from '~/components/Page'
+import ProjectCard from '~/components/ProjectCard'
+import Touchable from '~/components/Touchable'
+import { LinkButton, LinkIconButton } from '~/components/buttons'
 
 import IconDiscord from '~/assets/icons/discord.svg'
 import IconMail from '~/assets/icons/mail.svg'
@@ -46,7 +49,6 @@ export default (() => {
                             <span aria-hidden="true">!</span>
                         </h1>
                         <p style="text-wrap: balance">
-                            {/* TODO: Make this a constant, put in meta tag too and possibly stop using dayjs */}
                             I'm a {age}-year-old self-taught full-stack developer and a UI/UX designer. I want to make
                             useful things look good and accessible to everyone.
                         </p>

@@ -19,7 +19,11 @@ export const Page: Component<ComponentProps<'main'> & { noCrawl?: boolean; noSet
             <Show when={!props.noSetCanonical}>
                 <Link rel="canonical" href={`https://palmdevs.me${loc.pathname}`} />
             </Show>
-            <Column {...props as ComponentProps<'div'>} centerHorizontal class={combineClassNames(props.class, styles.Content)}>
+            <Column
+                {...(props as ComponentProps<'div'>)}
+                centerHorizontal
+                class={combineClassNames(props.class, styles.Content)}
+            >
                 {props.children}
             </Column>
         </Column>
@@ -56,11 +60,11 @@ interface SectionProps extends ComponentProps<'section'> {
  */
 
 export const Row = <E extends ElementType = 'div'>(props: FlexHelperProps<E>) => (
-    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('FH-Row', false, props)} />
+    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('R', false, props)} />
 )
 
 export const Column = <E extends ElementType = 'div'>(props: FlexHelperProps<E>) => (
-    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('FH-Col', true, props)} />
+    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('C', true, props)} />
 )
 
 const transformFlexHelperProps = (
@@ -84,11 +88,11 @@ const transformFlexHelperProps = (
     return mergeProps(compProps, {
         class: combineClassNames(
             styles[name],
-            styles[`G-${props.gap ?? 'md'}`],
-            undefinedIf(!props.flex, styles['FH-FF']),
-            undefinedIf(!props.wrap, styles['FH-FW']),
-            undefinedIf(!justifyCenter, styles['FH-JC']),
-            undefinedIf(!alignCenter, styles['FH-AC']),
+            styles[`G${props.gap ?? 'md'}`],
+            undefinedIf(!props.flex, styles['F']),
+            undefinedIf(!props.wrap, styles['W']),
+            undefinedIf(!justifyCenter, styles['J']),
+            undefinedIf(!alignCenter, styles['A']),
             compProps.class,
         ),
     })

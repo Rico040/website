@@ -4,7 +4,8 @@ import { Show, Suspense, createResource, createSignal, lazy, onCleanup, onMount 
 import { MDXProvider } from 'solid-mdx'
 import { format } from 'timeago.js'
 
-import { Column, Divider } from '~/components'
+import Divider from '~/components/Divider'
+import { Column } from '~/components/Page'
 import BlogLayout from '~/components/layouts/BlogLayout'
 
 import Posts, { type Post } from '~/constants/posts'

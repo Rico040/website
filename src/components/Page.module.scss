@@ -27,56 +27,56 @@
   padding-block: min(4vh, var(--gap-very-large));
 }
 
-.FH-Row,
-.FH-Col {
+.R,
+.C {
   display: flex;
 }
 
-.FH-Col {
+.C {
   flex-direction: column;
 }
 
-.FH-FW {
+.W {
   flex-wrap: wrap;
 }
 
-.FH-FF {
+.F {
   flex: 1;
 }
 
-.FH-JC {
+.J {
   justify-content: center;
 }
 
-.FH-AC {
+.A {
   align-items: center;
 }
 
-.G-xs {
+.Gxs {
   gap: var(--gap-smaller);
 }
 
-.G-sm {
+.Gsm {
   gap: var(--gap-small);
 }
 
-.G-md {
+.Gmd {
   gap: var(--gap-medium);
 }
 
-.G-lg {
+.Glg {
   gap: var(--gap-large);
 }
 
-.G-xl {
+.Gxl {
   gap: var(--gap-larger);
 }
 
-.G-xxl {
+.Gxxl {
   gap: var(--gap-very-large);
 }
 
-.G-xxxl {
+.Gxxxl {
   gap: var(--gap-insanely-large);
 }
 

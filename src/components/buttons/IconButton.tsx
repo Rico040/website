@@ -1,9 +1,11 @@
 import { type Component, type ComponentProps, createMemo, mergeProps, splitProps } from 'solid-js'
 import { combineClassNames, undefinedIf } from '~/utils'
-import { Column, type IconType } from '..'
 
+import { Column } from '../Page'
 import Touchable from '../Touchable'
 import styles from './IconButton.module.scss'
+
+import type { IconType } from '..'
 
 const IconButton: Component<IconButtonProps> = props => {
     return (

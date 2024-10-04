@@ -12,7 +12,8 @@ import { ThemeContext } from '~/contexts'
 import { logger } from '~/utils'
 
 import type { Component } from 'solid-js'
-import type { FlexHelperProps, IconType } from '.'
+import type { IconType } from '.'
+import type { FlexHelperProps } from './Page'
 
 import styles from './NavDock.module.scss'
 

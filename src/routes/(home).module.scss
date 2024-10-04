@@ -51,7 +51,6 @@
     border-radius: var(--radius-medium);
     padding: var(--gap-small);
     outline: var(--line-style) var(--surface-medium);
-    z-index: var(--layer-container);
 
     text-decoration: none;
     white-space: nowrap;
@@ -88,6 +87,5 @@
 
 .JSXHeadingEnd {
   user-select: none;
-  z-index: var(--layer-container);
   color: var(--surface-medium);
 }

@@ -62,7 +62,6 @@
 .variant-surface-medium {
   --comp-bg: var(--surface-medium);
   --comp-color: var(--neutral-high);
-  z-index: var(--layer-container);
 
   &:not([aria-disabled="true"], :disabled):is(:hover, :focus-visible) {
     opacity: unset;
@@ -73,7 +72,6 @@
 .variant-surface-low {
   --comp-bg: var(--surface-low);
   --comp-color: var(--neutral-high);
-  z-index: var(--layer-container);
   outline: var(--line-style) var(--surface-medium);
 
   &:not([aria-disabled="true"], :disabled):is(:hover, :focus-visible) {
