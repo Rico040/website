@@ -6,22 +6,12 @@
   left: 0;
   z-index: var(--layer-overlay);
   width: 100%;
-  transition: var(--duration-short) var(--easing-very-quick);
-  transition-property: opacity, bottom;
-
-  &[data-open="false"] {
-    opacity: 0;
-    bottom: -100%;
-  }
+  transition: bottom var(--duration-short) var(--easing-very-quick);
 }
 
-.Banner.Banner {
+.Banner {
   position: relative;
   padding: var(--gap-small) var(--gap-medium);
-
-  & > * {
-    min-width: fit-content;
-  }
 
   &:before {
     content: "";
@@ -33,6 +23,12 @@
     z-index: -2;
   }
 
+  & .Actions {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  // Desktop
   @media (min-width: queries.$mw-mobile) {
     width: queries.$mw-mobile;
     left: auto;

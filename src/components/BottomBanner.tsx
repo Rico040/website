@@ -1,37 +1,49 @@
-import {
-    type ComponentProps,
-    For,
-    type JSX,
-    createEffect,
-    createMemo,
-    createSignal,
-    onMount,
-    useContext,
-} from 'solid-js'
+import { type ComponentProps, type JSX, Show, createEffect, createSignal } from 'solid-js'
+import { Portal } from 'solid-js/web'
+
 import { Row } from './Page'
 import { Button } from './buttons'
 
-import { Portal } from 'solid-js/web'
 import { BottomBannerContext } from '~/contexts'
+import { logger, runAfterFramePaint } from '~/utils'
+
 import styles from './BottomBanner.module.scss'
 
 const BottomBanner = (props: BottomBarProps) => {
+    const log = (method: keyof typeof logger, ...args: unknown[]) => logger[method](`BottomBanner:${props.id}`, ...args)
+
     const [shouldOpen, _setShouldOpen] = createSignal(false)
     let ref: HTMLDivElement | undefined
 
     const setClosedByUser = () => localStorage.setItem(getStorageKey(props.id), 'true')
-    const animateOpen = () => ref?.style.removeProperty('bottom')
+    const animateOpen = () => {
+        log('debug', 'Animating open...')
+        runAfterFramePaint(() => ref!.style.removeProperty('bottom'))
+    }
     const animateClose = () => {
         // Really bad workaround because for some reason, getting the pseudo element height doesn't work (returns auto)
         // 2 pixels because 1 looks weird.
-        if (ref) ref.style.bottom = `calc(-${ref.getBoundingClientRect().height}px - 2px)`
+        log('debug', 'Animating close...')
+        ref!.style.bottom = `calc(-${ref!.getBoundingClientRect().height}px - 2px)`
     }
 
     const setShouldOpen = (value: boolean) => {
-        if (value) animateOpen()
-        else animateClose()
+        log('debug', 'New state:', value)
 
-        setTimeout(() => _setShouldOpen(value), 1000)
+        if (value) {
+            _setShouldOpen(value)
+            if (ref) animateOpen()
+        } else {
+            const cb = () => {
+                ref?.removeEventListener('transitionend', cb)
+                _setShouldOpen(value)
+            }
+
+            if (ref) {
+                animateClose()
+                ref.addEventListener('transitionend', cb)
+            } else cb()
+        }
     }
 
     const closeFunction = () => {
@@ -42,12 +54,11 @@ const BottomBanner = (props: BottomBarProps) => {
 
     const handleRef = (el: HTMLDivElement) => {
         ref = el
-        if (isBottomBarClosed(props.id) && props.openState !== 'force') return
+        log('debug', 'New ref:', ref)
 
-        requestAnimationFrame(() => {
-            setShouldOpen(props.openState === 'managed' ? true : (props.open ?? true))
-            animateOpen()
-        })
+        // The effect always runs before the ref is set
+        // This is to animate the initial opening
+        if (shouldOpen()) animateOpen()
     }
 
     createEffect(() => {
@@ -57,9 +68,6 @@ const BottomBanner = (props: BottomBarProps) => {
         switch (props.openState) {
             case 'unless-closed-by-user': {
                 const newState = closedByUser ? false : openProp
-                if (!newState) animateClose()
-                else animateOpen()
-
                 setShouldOpen(newState)
                 break
             }
@@ -74,27 +82,30 @@ const BottomBanner = (props: BottomBarProps) => {
 
     return (
         <Portal>
-            <div ref={handleRef} class={styles.Container} data-open={shouldOpen()} aria-hidden={shouldOpen()}>
-                <Row wrap centerHorizontal centerVertical gap="sm" class={styles.Banner}>
-                    <div class={styles.Background} />
-                    {props.children}
-                    <Row centerHorizontal wrap gap="sm">
-                        <BottomBannerContext.Provider value={{ close: closeFunction }}>
-                            {typeof props.actions === 'function' ? <props.actions /> : props.actions}
-                        </BottomBannerContext.Provider>
-                        <Button
-                            variant={props.closeButtonVariant ?? 'secondary'}
-                            onClick={() => {
-                                // If the open state is forced, don't close it
-                                if (props.openState === 'force') return
-                                closeFunction()
-                            }}
-                        >
-                            {props.closeLabel ?? 'Close'}
-                        </Button>
+            {/* I was gonna also nest <Portal> in <Show>, but that causes the CSS navigation animation to replay */}
+            <Show when={shouldOpen()}>
+                <div ref={handleRef} class={styles.Container} data-open={shouldOpen()} style="bottom: -100%">
+                    <Row wrap centerHorizontal centerVertical gap="sm" class={styles.Banner}>
+                        <div class={styles.Background} />
+                        {props.children}
+                        <Row centerHorizontal wrap gap="sm" class={styles.Actions}>
+                            <BottomBannerContext.Provider value={{ close: closeFunction }}>
+                                {typeof props.actions === 'function' ? <props.actions /> : props.actions}
+                            </BottomBannerContext.Provider>
+                            <Button
+                                variant={props.closeButtonVariant ?? 'secondary'}
+                                onClick={() => {
+                                    // If the open state is forced, don't close it
+                                    if (props.openState === 'force') return
+                                    closeFunction()
+                                }}
+                            >
+                                {props.closeLabel ?? 'Close'}
+                            </Button>
+                        </Row>
                     </Row>
-                </Row>
-            </div>
+                </div>
+            </Show>
         </Portal>
     )
 }
