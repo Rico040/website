@@ -83,7 +83,7 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                     id={`${new Date().getFullYear()}-bd`}
                     closeLabel="Close"
                     onClose={launchConfetti}
-                    actions={() => <Button onClick={launchConfetti}>Launch confetti 🎉</Button>}
+                    actions={<Button onClick={launchConfetti}>Launch confetti 🎉</Button>}
                 >
                     <p style="margin: 0">
                         <Show

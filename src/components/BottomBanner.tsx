@@ -71,7 +71,7 @@ const BottomBanner = (props: BottomBarProps) => {
                     {props.children}
                     <Row centerHorizontal wrap gap="sm">
                         <BottomBannerContext.Provider value={{ close: closeFunction }}>
-                            {props.actions}
+                            {typeof props.actions === 'function' ? <props.actions /> : props.actions}
                         </BottomBannerContext.Provider>
                         <Button
                             variant={props.closeButtonVariant ?? 'secondary'}
@@ -98,7 +98,7 @@ export default BottomBanner
 interface BottomBarProps {
     id: string
     children: JSX.Element | JSX.Element[]
-    actions?: JSX.Element
+    actions?: JSX.Element | (() => JSX.Element)
     closeLabel?: string
     closeButtonVariant?: ComponentProps<typeof Button>['variant']
     /**
