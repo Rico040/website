@@ -112,9 +112,9 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
                             <Button
                                 variant="primary"
                                 onClick={() => {
+                                    bottomBanner?.close()
                                     theme.set('dark')
                                     launchHalloweenConfetti()
-                                    bottomBanner?.close()
                                 }}
                             >
                                 Okay
