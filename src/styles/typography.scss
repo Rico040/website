@@ -1,5 +1,5 @@
 @use "queries";
-@import url("https://fonts.bunny.net/css?family=inter:400,500,600,700,800|jetbrains-mono:400&display=swap");
+@import url("https://fonts.bunny.net/css?family=inter:500,600,700|jetbrains-mono:400&display=swap");
 
 :root {
   --line-height: 1.5;
@@ -13,10 +13,10 @@
   --text-label: 0.9em;
   --text: 1.1em;
 
+  --weight-bolder: 700;
   --weight-bold: 650;
   --weight-label: 600;
   --weight-regular: 500;
-  --weight-thin: 400;
 }
 
 body {

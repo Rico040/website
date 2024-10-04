@@ -25,12 +25,12 @@ export default createHandler(() => {
                         <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
                         <link rel="icon" href="/favicon.ico" />
                         <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+                        <link rel="preconnect" href="https://fonts.bunny.net" as="font" />
                         <link
                             rel="preload"
-                            href="https://fonts.bunny.net/css?family=inter:400,500,600|jetbrains-mono:400&display=swap"
+                            href="https://fonts.bunny.net/css?family=inter:500,600,700|jetbrains-mono:400&display=swap"
                             as="style"
                         />
-                        <link rel="preconnect" href="https://fonts.bunny.net" as="font" />
                         {assets}
                     </head>
                     <script>
