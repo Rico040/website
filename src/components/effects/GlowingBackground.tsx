@@ -48,8 +48,8 @@ const GlowingBackground: Component<{
     const handleRef = (ref: HTMLDivElement) => {
         // Handle effect disables & parallax scroll
         createEffect(() => {
-            if (effectDisabled()) ref.style.setProperty('display', 'none')
-            else ref.style.removeProperty('display')
+            if (effectDisabled()) return ref.style.setProperty('display', 'none')
+            ref.style.removeProperty('display')
 
             const parentHeight = ref.clientHeight
             const handleScroll = () =>
