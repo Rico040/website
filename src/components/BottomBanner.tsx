@@ -52,14 +52,23 @@ const BottomBanner = (props: BottomBarProps) => {
 
     createEffect(() => {
         const closedByUser = isBottomBarClosed(props.id)
-        if (closedByUser) return setShouldOpen(false)
+        const openProp = props.open ?? true
 
-        if (props.openState && props.openState !== 'managed') {
-            const newState = closedByUser ? false : (props.open ?? true)
-            if (!newState) animateClose()
-            else animateOpen()
+        switch (props.openState) {
+            case 'unless-closed-by-user': {
+                const newState = closedByUser ? false : openProp
+                if (!newState) animateClose()
+                else animateOpen()
 
-            setTimeout(() => setShouldOpen(newState), 1000)
+                setShouldOpen(newState)
+                break
+            }
+            case 'force':
+                setShouldOpen(props.open ?? true)
+                break
+            default:
+                setShouldOpen(!closedByUser)
+                break
         }
     })
 
