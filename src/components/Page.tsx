@@ -19,7 +19,7 @@ export const Page: Component<ComponentProps<'main'> & { noCrawl?: boolean; noSet
             <Show when={!props.noSetCanonical}>
                 <Link rel="canonical" href={`https://palmdevs.me${loc.pathname}`} />
             </Show>
-            <Column {...props} centerHorizontal class={combineClassNames(props.class, styles.Content)}>
+            <Column {...props as ComponentProps<'div'>} centerHorizontal class={combineClassNames(props.class, styles.Content)}>
                 {props.children}
             </Column>
         </Column>
@@ -55,12 +55,12 @@ interface SectionProps extends ComponentProps<'section'> {
  * The gap can be set using the gap prop, and the flex prop can be used to make the container fill the available space.
  */
 
-export const Row = <E extends ElementType>(props: FlexHelperProps<E>) => (
-    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('FH-Row', false, props)} {...props.asProps} />
+export const Row = <E extends ElementType = 'div'>(props: FlexHelperProps<E>) => (
+    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('FH-Row', false, props)} />
 )
 
-export const Column = <E extends ElementType>(props: FlexHelperProps<E>) => (
-    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('FH-Col', true, props)} {...props.asProps} />
+export const Column = <E extends ElementType = 'div'>(props: FlexHelperProps<E>) => (
+    <Dynamic component={props.as ?? 'div'} {...transformFlexHelperProps('FH-Col', true, props)} />
 )
 
 const transformFlexHelperProps = (
@@ -100,7 +100,6 @@ export type FlexHelperProps<E extends ElementType> = FlexHelperCustomProps<E> &
     Omit<ComponentProps<E>, keyof FlexHelperCustomProps<E>>
 type FlexHelperCustomProps<E extends ElementType> = {
     as?: E
-    asProps?: ComponentProps<E>
     gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
     flex?: boolean
     wrap?: boolean
