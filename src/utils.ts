@@ -22,3 +22,12 @@ export const getAge = (birthDate: Date) => {
     if (monthDiff < 0 || (monthDiff === 0 && today.getUTCDate() < birthDate.getUTCDate())) age--
     return age
 }
+
+// https://webperf.tips/tip/measuring-paint-time/
+export const runAfterFramePaint = (callback: () => unknown) => {
+    requestAnimationFrame(() => {
+        const messageChannel = new MessageChannel()
+        messageChannel.port1.onmessage = callback
+        messageChannel.port2.postMessage(undefined)
+    })
+}
