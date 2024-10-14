@@ -41,7 +41,7 @@ export const Section: Component<SectionProps & FlexHelperProps<'section'>> = ful
             class={combineClassNames(
                 styles.Section,
                 styles.FlexAlignCenter,
-                undefinedIf(props.constrainSize, sharedStyles.FlexFlex),
+                undefinedIf(props.constrainSize, sharedStyles.F),
                 sectionProps.class,
             )}
         />
