@@ -9,10 +9,11 @@ import { Column } from '~/components/Page'
 import BlogLayout from '~/components/layouts/BlogLayout'
 
 import Posts, { type Post } from '~/constants/posts'
-import { logger, undefinedIf } from '~/utils'
+import { combineClassNames, logger, undefinedIf } from '~/utils'
 
 import FourOhFourPage from '~/routes/[...404]'
 
+import sharedStyles from '~/styles/shared.module.scss'
 import styles from './[...post].module.scss'
 
 export default () => {
@@ -48,7 +49,11 @@ export default () => {
                         <Title>{`${info().title} • Palm (PalmDevs)`}</Title>
                         <Meta name="description" content={info().description} />
                         <div class={styles.Post}>
-                            <Column as="header" gap="none" class={styles.Wrapper}>
+                            <Column
+                                as="header"
+                                gap="none"
+                                class={combineClassNames(styles.Wrapper, sharedStyles.TextChildrenCenter)}
+                            >
                                 <Show when={info().image}>
                                     {img => (
                                         <>
@@ -66,9 +71,9 @@ export default () => {
                                         </>
                                     )}
                                 </Show>
-                                <div>
+                                <div class={sharedStyles.TextChildrenCenter}>
                                     <h1>{info().title}</h1>
-                                    <p>{info().description}</p>
+                                    <p style="text-wrap: balance">{info().description}</p>
                                 </div>
                                 <p style="color: var(--neutral-lowest)">posted {formattedTime()}</p>
                             </Column>
