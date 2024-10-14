@@ -17,7 +17,7 @@
     "rehype-pretty-code": "^0.13.2",
     "remark-gfm": "^4.0.0",
     "remark-slug": "^7.0.1",
-    "solid-js": "^1.9.1",
+    "solid-js": "^1.9.2",
     "timeago.js": "^4.0.2",
     "vinxi": "^0.4.3",
     "vite-plugin-solid-svg": "^0.8.1"
@@ -28,12 +28,13 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.3",
     "@vinxi/plugin-mdx": "^3.7.2",
-    "sass": "^1.79.4",
+    "sass": "^1.79.5",
     "solid-mdx": "^0.0.7"
   },
   "trustedDependencies": ["@biomejs/biome", "esbuild"],
   "patchedDependencies": {
     "@vinxi/plugin-mdx@3.7.1": "patches/@vinxi%2Fplugin-mdx@3.7.1.patch",
-    "solid-mdx@0.0.7": "patches/solid-mdx@0.0.7.patch"
+    "solid-mdx@0.0.7": "patches/solid-mdx@0.0.7.patch",
+    "@solidjs/start@1.0.8": "patches/@solidjs%2Fstart@1.0.8.patch"
   }
 }
