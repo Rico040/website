@@ -36,7 +36,7 @@ export default (() => {
                 <Meta property="og:image:height" content="500" />
                 <Meta property="og:image:type" content="image/webp" />
                 <Section constrainSize style="padding-block: min(8vh, var(--gap-insanely-large));">
-                    <Column gap="none" class={sharedStyles.DirectTextChildrenAlignCenter}>
+                    <Column gap="none" class={sharedStyles.TextChildrenCenter}>
                         <h1 aria-label="Hey there, I'm Palm">
                             <span aria-hidden="true">Hey there, I'm </span>
                             <span

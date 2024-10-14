@@ -21,7 +21,7 @@ const FourOhFourPage: Component<{ withoutDocTitle?: boolean }> = props => (
         <Meta name="description" content="This page doesn't exist. Did you take a wrong turn?" />
         <HttpStatusCode code={404} />
         <Section id="info">
-            <Column gap="none" centerHorizontal class={sharedStyles.DirectTextChildrenAlignCenter}>
+            <Column gap="none" centerHorizontal class={sharedStyles.TextChildrenCenter}>
                 <h1>Wrong way?</h1>
                 <p style="text-wrap: balance">This page doesn't exist. Did you take a wrong turn?</p>
                 <Row style="padding-block-start: var(--gap-medium)">
