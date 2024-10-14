@@ -22,7 +22,7 @@ export default (() => {
                     content="Visit to see all my blog posts, usually containing some interesting and random stuff."
                 />
                 <Section centerHorizontal constrainSize>
-                    <Column gap="none" class={sharedStyles.DirectTextChildrenAlignCenter}>
+                    <Column gap="none" class={sharedStyles.TextChildrenCenter}>
                         <h1>My Blog</h1>
                         <p>Welcome to my blog! Here contains random and some interesting stuff.</p>
                     </Column>
@@ -65,4 +65,4 @@ const fetchPosts = () =>
             const { default: _, ...postInfo } = await post()
             return [href, postInfo] as const
         }),
-    )
+    ).then(list => list.sort((a, b) => b[1].posted.getTime() - a[1].posted.getTime()))
