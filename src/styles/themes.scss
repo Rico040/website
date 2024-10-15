@@ -49,6 +49,11 @@
   --neutral-variant-high: #81b0c3;
   --neutral-variant-low: #9da8ac;
 
+  --surface-highest-full-opacity: hsla(204, 14%, 17%, 1);
+  --surface-high-full-opacity: hsla(204, 14%, 15%, 1);
+  --surface-medium-full-opacity: hsla(204, 14%, 13%, 1);
+  --surface-low-full-opacity: hsla(204, 14%, 11%, 1);
+
   --surface-highest-high-opacity: hsla(216, 20%, 25%, 0.65);
   --surface-high-high-opacity: hsla(216, 18%, 23%, 0.65);
   --surface-medium-high-opacity: hsla(220, 23%, 19%, 0.65);
@@ -83,6 +88,11 @@
 
     --neutral-variant-high: #c38d81;
     --neutral-variant-low: #95766d;
+
+    --surface-highest-full-opacity: hsla(13.8, 20.3%, 19%, 1);
+    --surface-high-full-opacity: hsla(17.1, 17.9%, 17.3%, 1);
+    --surface-medium-full-opacity: hsla(20.9, 23.7%, 13.9%, 1);
+    --surface-low-full-opacity: hsla(16, 19.5%, 11.8%, 1);
 
     --surface-highest-high-opacity: hsla(13.8, 20.3%, 25.1%, 0.65);
     --surface-high-high-opacity: hsla(17.1, 17.9%, 22.9%, 0.65);

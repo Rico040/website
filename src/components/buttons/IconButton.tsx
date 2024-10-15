@@ -66,7 +66,13 @@ const transformProps = <T extends IconButtonProps | LinkIconButtonProps>(props: 
 }
 
 interface BaseIconButtonProps {
-    variant?: 'primary' | 'secondary' | 'surface-medium' | 'surface-low'
+    variant?:
+        | 'primary'
+        | 'secondary'
+        | 'surface-medium'
+        | 'surface-low'
+        | 'surface-medium-full-opacity'
+        | 'surface-low-full-opacity'
     size?: 'small' | 'medium' | 'large'
     icon: IconType
     label?: string

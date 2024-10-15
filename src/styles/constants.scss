@@ -49,3 +49,9 @@
   // --interaction-hover-scale: 1;
   // --interaction-hover-scale: 1.025;
 }
+
+@media not (pointer: fine) {
+  :root {
+    --interaction-click-scale: 0.95;
+  }
+}
