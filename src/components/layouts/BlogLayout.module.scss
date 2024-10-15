@@ -16,6 +16,7 @@
   padding: var(--gap-very-large);
   transition: var(--duration-medium) var(--easing);
   transition-property: opacity, transform;
+  z-index: var(--layer-nav);
   
   @media (max-width: queries.$mw-mobile) {
     padding: var(--gap-large);
