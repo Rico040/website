@@ -10,11 +10,12 @@ const GlowingBackground: Component<{
     reanimateInterval?: number
     orbs?: number
     scrollStiffness?: number
+    maxPaintTime?: number
 }> = props => {
     const theme = useContext(ThemeContext)
     const log = (method: keyof typeof logger, ...args: unknown[]) => logger[method]('GlowingBackground', ...args)
 
-    const [effectDisabled, setEffectDisabled] = createSignal(false)
+    const [effectDisabled, setEffectDisabled] = createSignal(true)
 
     // Listen and set media query changes
     onMount(() => {
@@ -35,14 +36,36 @@ const GlowingBackground: Component<{
 
     // More conditions to disable effects
     createEffect(() => {
-        if (theme.colorScheme !== 'dark') {
-            log('log', 'Not using dark color scheme, disabling')
-        } else {
-            log('log', 'No conditions matched, effect is enabled')
-            return setEffectDisabled(false)
+        const afterMeasure = () => {
+            if (theme.colorScheme !== 'dark') {
+                log('log', 'Not using dark color scheme, disabling')
+            } else {
+                log('log', 'No conditions matched, effect is enabled')
+                return setEffectDisabled(false)
+            }
+
+            setEffectDisabled(true)
         }
 
-        setEffectDisabled(true)
+        if (!document.hasFocus()) {
+            log('warn', 'Document is not focused, cannot measure paint time')
+            return afterMeasure()
+        }
+
+        const start = performance.now()
+        runAfterFramePaint(() => {
+            const paintTime = performance.now() - start
+            log('log', `Paint time is ${paintTime}ms`)
+
+            // 25ms should be enough for most cases
+            // Any device taking longer than this can only render at around 40fps, which is slow...
+            if (paintTime > (props.maxPaintTime ?? 20)) {
+                log('warn', 'Component visuals disabled due to high paint time')
+                return setEffectDisabled(true)
+            }
+
+            afterMeasure()
+        })
     })
 
     const handleRef = (ref: HTMLDivElement) => {
@@ -52,7 +75,7 @@ const GlowingBackground: Component<{
             ref.style.removeProperty('display')
 
             const parentHeight = ref.clientHeight
-            const handleScroll = () =>
+            const handleScroll = () => {
                 requestAnimationFrame(() => {
                     log('debug', 'Scroll position updated')
                     ref.style.top = `-${
@@ -60,6 +83,7 @@ const GlowingBackground: Component<{
                         (window.scrollY / (document.body.clientHeight - window.innerHeight))
                     }px`
                 })
+            }
 
             window.addEventListener('scroll', handleScroll)
             log('log', 'Component parallax scroll ready')
