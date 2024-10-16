@@ -1,4 +1,4 @@
-import { type Component, type JSX, createContext, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
+import { type Component, type JSX, createContext, onCleanup, onMount } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { ThemeCycleMap } from './constants/theme'
 import { logger } from './utils'
