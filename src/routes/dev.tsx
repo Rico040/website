@@ -2,7 +2,6 @@ import { type Component, For, createSignal, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { Dynamic } from 'solid-js/web'
 
-import Divider from '~/components/Divider'
 import LinkCard from '~/components/LinkCard'
 import NavDock from '~/components/NavDock'
 import { Column, Page, Row, Section } from '~/components/Page'
@@ -54,8 +53,7 @@ export default (() => {
                             Glow effect on: {String(isGlowEffectOn())}
                         </Button>
                         <Button disabled>
-                            Version: {__APP_BRANCH}.{__APP_COMMIT.slice(0, 7)}-{__APP_DEPLOY_CONTEXT} ({__APP_INTEGRITY}
-                            )
+                            Version: {__APP_BRANCH}.{__APP_COMMIT.slice(0, 7)}-{__APP_DEPLOY_CONTEXT}
                         </Button>
                     </Row>
                     <Row centerHorizontal wrap gap="xxxl">

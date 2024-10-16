@@ -9,12 +9,6 @@ import ErrorPage from './error-page'
 
 import './app.scss'
 
-const IntegrityEmojiMap: Record<typeof __APP_INTEGRITY, string> = {
-    clean: '✅',
-    dirty: '❌',
-    unknown: '❓',
-}
-
 const App: Component = () => {
     onMount(() => {
         switch (document.documentElement.dataset.event) {
@@ -31,15 +25,7 @@ const App: Component = () => {
             'font-size: unset',
         )
 
-        console.table({
-            Version: `${__APP_BRANCH}.${__APP_COMMIT}-${__APP_DEPLOY_CONTEXT}`,
-            Integrity: `${IntegrityEmojiMap[__APP_INTEGRITY]}`,
-            'Dirty files': !__APP_INTEGRITY_DIRTY_FILES.length
-                ? 'All important files are clean'
-                : `${__APP_INTEGRITY_DIRTY_FILES.length} files are dirty:\n${__APP_INTEGRITY_DIRTY_FILES
-                      .map(f => `- ${f}`)
-                      .join('\n')}`,
-        })
+        console.info(`Version: ${__APP_BRANCH}.${__APP_COMMIT}-${__APP_DEPLOY_CONTEXT}`)
     })
 
     return (
