@@ -6,8 +6,8 @@ import { Column, Page, Section } from '~/components/Page'
 
 import Posts from '~/constants/posts'
 
-import sharedStyles from '~/styles/shared.module.scss'
-import styles from './(landing).module.scss'
+import sharedStyles from '~/styles/shared.module.css'
+import styles from './(landing).module.css'
 
 export default (() => {
     const [posts] = createResource(fetchPosts)

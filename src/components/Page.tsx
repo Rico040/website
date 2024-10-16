@@ -5,7 +5,7 @@ import { Dynamic } from 'solid-js/web'
 
 import { combineClassNames, undefinedIf } from '~/utils'
 
-import sharedStyles from '~/styles/shared.module.scss'
+import sharedStyles from '~/styles/shared.module.css'
 import styles from './Page.module.scss'
 
 export const Page: Component<ComponentProps<'main'> & { noCrawl?: boolean; noSetCanonical?: boolean }> = props => {

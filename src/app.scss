@@ -1,7 +1,7 @@
-@import url("./styles/themes.scss");
+@import url("./styles/themes/base.css");
 @import url("./styles/typography.scss");
-@import url("./styles/constants.scss");
-@import url("./styles/layers.scss");
+@import url("./styles/constants.css");
+@import url("./styles/layers.css");
 
 :root {
   --themeable-prop-content: color, fill, stroke-color;
@@ -73,6 +73,13 @@ a {
 input,
 button {
   font-size: var(--text-label);
+}
+
+hr {
+  width: 100%;
+  border-radius: var(--radius-full);
+  border: var(--line-style) var(--surface-medium);
+  margin-block: var(--gap-larger);
 }
 
 ul[data-no-marker="true"] {

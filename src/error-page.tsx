@@ -1,7 +1,7 @@
 import { RepositoryLinks } from './constants/links'
 import { logger } from './utils'
 
-import styles from './error-page.module.scss'
+import styles from './error-page.module.css'
 
 import type { Component } from 'solid-js'
 

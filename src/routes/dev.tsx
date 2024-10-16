@@ -100,9 +100,12 @@ export default (() => {
                             <h2>Components</h2>
                             <Column>
                                 <h3>Divider</h3>
-                                <Divider />
+                                <p>
+                                    It's just a styled <code>&lt;hr&gt;</code>, don't know what else to say
+                                </p>
+                                <hr />
                             </Column>
-                            <Divider />
+                            <hr />
                             <Row wrap gap="xxxl">
                                 <Column>
                                     <h3>Navigation dock</h3>
@@ -170,7 +173,7 @@ export default (() => {
                                             Trailing icon: {String(Boolean(buttonProps.trailingIcon))}
                                         </Button>
                                     </Row>
-                                    <Divider />
+                                    <hr />
                                     <Column>
                                         <h3>Icon buttons</h3>
                                         <For each={['small', 'medium', 'large'] as const}>
@@ -199,7 +202,7 @@ export default (() => {
                                             )}
                                         </For>
                                     </Column>
-                                    <Divider />
+                                    <hr />
                                     <Row>
                                         <Button onClick={() => setButtonProps({ disabled: !buttonProps.disabled })}>
                                             Disabled: {String(buttonProps.disabled)}

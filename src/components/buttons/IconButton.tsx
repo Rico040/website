@@ -3,7 +3,7 @@ import { combineClassNames, undefinedIf } from '~/utils'
 
 import { Column } from '../Page'
 import Touchable from '../Touchable'
-import styles from './IconButton.module.scss'
+import styles from './IconButton.module.css'
 
 import type { IconType } from '..'
 

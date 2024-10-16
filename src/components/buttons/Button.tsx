@@ -6,7 +6,7 @@ import Touchable from '../Touchable'
 import type { Component, ComponentProps, JSX } from 'solid-js'
 import type { IconType } from '..'
 
-import styles from './Button.module.scss'
+import styles from './Button.module.css'
 
 const Button: Component<ButtonProps> = props => (
     <Touchable

@@ -13,8 +13,7 @@ import IconHome from '~/assets/icons/nav/home.svg'
 import IconSource from '~/assets/icons/source.svg'
 
 import { BottomBannerContext, ConfettiContext, ThemeContext } from '~/contexts'
-import sharedStyles from '~/styles/shared.module.scss'
-import GlowingBackground from '../effects/GlowingBackground'
+import sharedStyles from '~/styles/shared.module.css'
 
 const GlobalLayout: Component<{ children: JSX.Element }> = props => {
     const theme = useContext(ThemeContext)

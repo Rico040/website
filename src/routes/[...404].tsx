@@ -10,7 +10,7 @@ import { RepositoryLinks } from '~/constants/links'
 import IconHome from '~/assets/icons/nav/home.svg'
 import IconReport from '~/assets/icons/report.svg'
 
-import sharedStyles from '~/styles/shared.module.scss'
+import sharedStyles from '~/styles/shared.module.css'
 
 const FourOhFourPage: Component<{ withoutDocTitle?: boolean }> = props => (
     <Page noCrawl noSetCanonical>

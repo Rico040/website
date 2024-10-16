@@ -17,6 +17,13 @@ const IntegrityEmojiMap: Record<typeof __APP_INTEGRITY, string> = {
 
 const App: Component = () => {
     onMount(() => {
+        switch (document.documentElement.dataset.event) {
+            case 'halloween': {
+                import('./styles/themes/halloween.css')
+                break
+            }
+        }
+
         console.log(
             "%c[App]\n%cHey there!\n%cAre you a developer looking to contribute to this website? Check out the source code!\nIf you're just exploring then that's fine. Have fun!",
             'color: aquamarine; font-weight: bold;',

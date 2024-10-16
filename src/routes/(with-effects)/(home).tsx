@@ -15,7 +15,7 @@ import Skills from '~/constants/skills'
 import Socials from '~/constants/socials'
 import { getAge } from '~/utils'
 
-import sharedStyles from '~/styles/shared.module.scss'
+import sharedStyles from '~/styles/shared.module.css'
 import styles from './(home).module.scss'
 
 export default (() => {

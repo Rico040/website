@@ -6,7 +6,7 @@ import Touchable from './Touchable'
 import IconNext from '~/assets/icons/next.svg'
 
 import { combineClassNames, undefinedIf } from '~/utils'
-import styles from './LinkCard.module.scss'
+import styles from './LinkCard.module.css'
 
 const LinkCard: Component<LinkCardProps> = props => {
     const [, aProps] = splitProps(props, [

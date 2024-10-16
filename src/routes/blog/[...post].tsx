@@ -4,7 +4,6 @@ import { Show, Suspense, createResource, createSignal, lazy, onCleanup, onMount 
 import { MDXProvider } from 'solid-mdx'
 import { format } from 'timeago.js'
 
-import Divider from '~/components/Divider'
 import { Column } from '~/components/Page'
 import BlogLayout from '~/components/layouts/BlogLayout'
 
@@ -13,8 +12,8 @@ import { combineClassNames, logger, undefinedIf } from '~/utils'
 
 import FourOhFourPage from '~/routes/[...404]'
 
-import sharedStyles from '~/styles/shared.module.scss'
-import styles from './[...post].module.scss'
+import sharedStyles from '~/styles/shared.module.css'
+import styles from './[...post].module.css'
 
 export default () => {
     const params = useParams<{ post: string }>()
@@ -77,12 +76,8 @@ export default () => {
                                 </div>
                                 <p style="color: var(--neutral-lowest)">posted {formattedTime()}</p>
                             </Column>
-                            <Divider />
-                            <MDXProvider
-                                components={{
-                                    hr: () => <Divider />,
-                                }}
-                            >
+                            <hr />
+                            <MDXProvider components={{}}>
                                 <Suspense>
                                     <PostComponent />
                                 </Suspense>
