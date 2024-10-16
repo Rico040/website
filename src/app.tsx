@@ -13,7 +13,7 @@ const App: Component = () => {
     onMount(() => {
         switch (document.documentElement.dataset.event) {
             case 'halloween': {
-                import('./styles/themes/halloween.css')
+                import('./themes/halloween')
                 break
             }
         }
