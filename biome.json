@@ -42,9 +42,14 @@
       "lineEnding": "crlf"
     }
   },
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  },
   "files": {
     "ignoreUnknown": true,
-    "include": ["*.jsx", "*.json", "*.tsx", "*.js", "*.ts"],
+    "include": ["*.jsx", "*.json", "*.tsx", "*.js", "*.ts", "*.css"],
     "ignore": ["dist/**/*", "node_modules/**/*", ".vinxi/**/*", ".output/**/*"]
   }
 }
