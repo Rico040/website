@@ -7,11 +7,13 @@
   z-index: var(--layer-overlay);
   width: 100%;
   transition: bottom var(--duration-short) var(--easing-very-quick);
+  pointer-events: none;
 }
 
 .Banner {
   position: relative;
   padding: var(--gap-small) var(--gap-medium);
+  pointer-events: initial;
 
   &:before {
     content: "";
