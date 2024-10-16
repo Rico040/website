@@ -1,19 +1,14 @@
 import { execSync, spawnSync } from 'child_process'
+import rehypeShiki from '@shikijs/rehype'
+import { transformerNotationHighlight, transformerNotationWordHighlight } from '@shikijs/transformers'
+import { transformerTwoslash } from '@shikijs/twoslash'
 import { defineConfig } from '@solidjs/start/config'
 import mdx from '@vinxi/plugin-mdx'
-import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
-import remarkSlug from 'remark-slug'
 import svgPlugin from 'vite-plugin-solid-svg'
 
 const defineString = (str?: string) => `"${str || 'unknown'}"`
-
-const integrityCheckItems = ['public', 'src', './app.config.ts', './bun.lockb']
-const integrityCheck = spawnSync('git', ['diff', '--name-only', 'HEAD', ...integrityCheckItems], {
-    timeout: 5000,
-})
-
-const integrityDirtyItems = integrityCheck.stdout.toString().trim().split('\n').filter(Boolean)
 
 export default defineConfig({
     ssr: true,
@@ -37,7 +32,7 @@ export default defineConfig({
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: 'modern-compiler',
+                    api: 'modern',
                 },
             },
         },
@@ -46,15 +41,23 @@ export default defineConfig({
                 jsx: true,
                 jsxImportSource: 'solid-js',
                 providerImportSource: 'solid-mdx',
-                remarkPlugins: [remarkGfm, remarkSlug],
+                remarkPlugins: [remarkGfm],
                 rehypePlugins: [
+                    rehypeSlug,
                     [
-                        rehypePrettyCode,
+                        rehypeShiki,
                         {
-                            theme: {
-                                dark: 'github-dark-dimmed',
+                            themes: {
+                                dark: 'ayu-dark',
                                 light: 'github-light',
                             },
+                            transformers: [
+                                transformerNotationHighlight(),
+                                transformerNotationWordHighlight(),
+                                transformerTwoslash({
+                                    explicitTrigger: true,
+                                }),
+                            ],
                         },
                     ],
                 ],
@@ -67,10 +70,6 @@ export default defineConfig({
             __APP_BRANCH: defineString(
                 process.env.BRANCH ?? execSync('git rev-parse --abbrev-ref HEAD').toString().trim(),
             ),
-            __APP_INTEGRITY: defineString(
-                integrityDirtyItems.length ? 'dirty' : integrityCheck.status !== null ? 'clean' : 'unknown',
-            ),
-            __APP_INTEGRITY_DIRTY_FILES: `[${integrityDirtyItems.map(defineString).join(',')}]`,
         },
     },
 })
