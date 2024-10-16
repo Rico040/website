@@ -11,13 +11,6 @@ import './app.scss'
 
 const App: Component = () => {
     onMount(() => {
-        switch (document.documentElement.dataset.event) {
-            case 'halloween': {
-                import('./themes/halloween')
-                break
-            }
-        }
-
         console.log(
             "%c[App]\n%cHey there!\n%cAre you a developer looking to contribute to this website? Check out the source code!\nIf you're just exploring then that's fine. Have fun!",
             'color: aquamarine; font-weight: bold;',

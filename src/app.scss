@@ -1,7 +1,9 @@
-@import url("./styles/themes/base.css");
+@import url("./styles/themes/basic.css");
 @import url("./styles/typography.scss");
 @import url("./styles/constants.css");
 @import url("./styles/layers.css");
+
+@import url("./styles/themes/halloween.css");
 
 :root {
   --themeable-prop-content: color, fill, stroke-color;
