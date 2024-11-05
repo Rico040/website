@@ -1,4 +1,4 @@
-import { execSync, spawnSync } from 'child_process'
+import { execSync } from 'child_process'
 import rehypeShiki from '@shikijs/rehype'
 import { transformerNotationHighlight, transformerNotationWordHighlight } from '@shikijs/transformers'
 import { transformerTwoslash } from '@shikijs/twoslash'
@@ -19,10 +19,13 @@ export default defineConfig({
             },
         },
         preset: process.env.NITRO_PRESET ?? 'bun',
-        prerender: {
-            crawlLinks: true,
-            failOnError: true,
-        },
+        // Use this if you want everything to be completely static
+        // The site has theming based on events, so this will not be used unless you want to cause a theme flash
+        // Current code requires a rebuild to change event-based themes on the site:
+        // prerender: {
+        //     crawlLinks: true,
+        //     failOnError: true,
+        // },
     },
     extensions: ['mdx'],
     vite: {
