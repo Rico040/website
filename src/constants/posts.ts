@@ -14,4 +14,5 @@ export interface Post {
     posted: Date
     image?: string
     imageAspectRatio?: number
+    hidden?: boolean
 }
