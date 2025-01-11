@@ -1,10 +1,10 @@
 import { Meta, Title } from '@solidjs/meta'
-import { useParams } from '@solidjs/router'
-import { Show, Suspense, createResource, createSignal, lazy, onCleanup, onMount } from 'solid-js'
+import { createAsync, useParams } from '@solidjs/router'
+import { ErrorBoundary, Match, Show, Suspense, Switch, createSignal, lazy, onCleanup, onMount } from 'solid-js'
 import { MDXProvider } from 'solid-mdx'
 import { format } from 'timeago.js'
 
-import { Column } from '~/components/Page'
+import { Column, Page } from '~/components/Page'
 import BlogLayout from '~/components/layouts/BlogLayout'
 
 import Posts, { type Post } from '~/constants/posts'
@@ -18,79 +18,78 @@ import styles from './[...post].module.css'
 export default () => {
     const params = useParams<{ post: string }>()
 
-    // This returns a Promise, since this isn't eager
-    // which is great, because we don't want to load the post until we know it's needed
     const post = Posts[params.post]
-    if (!post) return <FourOhFourPage withoutDocTitle />
-
-    // This is just a silly workaround because the above returns a promise
-    // so we can abuse resources to get the info we need
-    const [postInfo] = createResource(post, getPostInfo)
-
-    // `await post` has a `default` property, which is why this is possible
-    const PostComponent = lazy(() => post())
+    const postInfo = createAsync(async () => {
+        // For testing purposes:
+        // await new Promise(resolve => setTimeout(resolve, 1000))
+        if (!post) return
+        // We can't serialize a function, so we need to exclude it from the object
+        return await post().then(({ default: _, ...rest }: Post) => rest)
+    })
 
     return (
-        <Show when={postInfo()} fallback={<p>Loading post...</p>}>
-            {info => {
-                const [formattedTime, setFormattedTime] = createSignal(format(info().posted))
+        <Suspense fallback={<Page>Loading post...</Page>}>
+            <Show when={postInfo()} keyed fallback={<FourOhFourPage />}>
+                {info => {
+                    const [formattedTime, setFormattedTime] = createSignal(format(info.posted))
 
-                onMount(() => {
-                    const interval = setInterval(() => {
-                        logger.debug('Blog', 'Updating posted time...')
-                        setFormattedTime(format(info().posted))
-                    }, 60e3)
-                    onCleanup(() => clearInterval(interval))
-                })
+                    onMount(() => {
+                        const interval = setInterval(() => {
+                            logger.debug('Blog', 'Updating posted time...')
+                            setFormattedTime(format(info.posted))
+                        }, 60e3)
+                        onCleanup(() => clearInterval(interval))
+                    })
 
-                return (
-                    <BlogLayout>
-                        <Title>{`${info().title} • Palm (PalmDevs)`}</Title>
-                        <Meta name="description" content={info().description} />
-                        <div class={styles.Post}>
-                            <Column
-                                as="header"
-                                gap="none"
-                                class={combineClassNames(styles.Wrapper, sharedStyles.TextChildrenCenter)}
-                            >
-                                <Show when={info().image}>
-                                    {img => (
-                                        <>
-                                            <Meta name="twitter:card" content="summary_large_image" />
-                                            <Meta name="twitter:image:src" content={img()} />
-                                            <img
-                                                class={styles.Cover}
-                                                src={img()}
-                                                style={undefinedIf(
-                                                    !info().imageAspectRatio,
-                                                    `--comp-aspect-ratio: ${info().imageAspectRatio}`,
-                                                )}
-                                                alt="Post cover"
-                                            />
-                                        </>
-                                    )}
-                                </Show>
-                                <div class={sharedStyles.TextChildrenCenter}>
-                                    <h1>{info().title}</h1>
-                                    <p style="text-wrap: balance">{info().description}</p>
-                                </div>
-                                <p style="color: var(--neutral-lowest)">posted {formattedTime()}</p>
-                            </Column>
-                            <hr />
-                            <MDXProvider components={{}}>
-                                <Suspense>
-                                    <PostComponent />
+                    return (
+                        <BlogLayout>
+                            <Title>{`${info.title} • Palm (PalmDevs)`}</Title>
+                            <Meta name="description" content={info.description} />
+                            <div class={styles.Post}>
+                                <Column
+                                    as="header"
+                                    gap="none"
+                                    class={combineClassNames(styles.Wrapper, sharedStyles.TextChildrenCenter)}
+                                >
+                                    <Show when={info.image}>
+                                        {img => (
+                                            <>
+                                                <Meta name="twitter:card" content="summary_large_image" />
+                                                <Meta name="twitter:image:src" content={img()} />
+                                                <img
+                                                    class={styles.Cover}
+                                                    src={img()}
+                                                    style={undefinedIf(
+                                                        !info.imageAspectRatio,
+                                                        `--comp-aspect-ratio: ${info.imageAspectRatio}`,
+                                                    )}
+                                                    alt="Post cover"
+                                                />
+                                            </>
+                                        )}
+                                    </Show>
+                                    <div class={sharedStyles.TextChildrenCenter}>
+                                        <h1>{info.title}</h1>
+                                        <p style="text-wrap: balance">{info.description}</p>
+                                    </div>
+                                    <p style="color: var(--neutral-lowest)">posted {formattedTime()}</p>
+                                </Column>
+                                <hr />
+                                <Suspense fallback="Loading post...">
+                                    <MDXProvider components={{}}>
+                                        <Show when={post} keyed>
+                                            {post => {
+                                                const Post = lazy(post)
+                                                return <Post />
+                                            }}
+                                        </Show>
+                                    </MDXProvider>
                                 </Suspense>
-                            </MDXProvider>
-                        </div>
-                    </BlogLayout>
-                )
-            }}
-        </Show>
+                            </div>
+                        </BlogLayout>
+                    )
+                }}
+            </Show>
+        </Suspense>
     )
-}
-
-const getPostInfo = async (post: Promise<Post>) => {
-    const { default: _, ...rest } = await post
-    return rest
 }
