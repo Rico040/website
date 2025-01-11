@@ -1,79 +1,84 @@
 export const title = "My YouTube channel is gone. Don't do this mistake."
-export const description = "My YouTube channel, permanently deleted without me knowing. Here's what happened and how you can prevent it."
+export const description = "My YouTube channel, permanently deleted without me knowing. Here's what happened and what you shouldn't do."
 export const posted = new Date(1736588449710);
 export const image = "/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/cover.webp"
 export const imageAspectRatio = 1.91 / 1;
 
-<style>{'.img{margin-block:4rem}'}</style>
+<style>{`.img{margin-block:4rem}`}</style>
+<style>{`[data-theme=dark] .light-img{display:none}`}</style>
+<style>{`[data-theme=light] .dark-img{display:none}`}</style>
 
-Hello, people on the internet! My YouTube channel had recently been permanently deleted, without any notification or emails.
+Hello, people on the internet! My YouTube channel had recently been permanently deleted without me knowing. Here's what happened and what you shouldn't do.
 
 I have no active strikes on the channel, and haven't uploaded in over a year. However, I still had around 2,000 subscribers on it, and about a million views!
 
-## Why was it deleted?
+## Some context
 
-No, it's not the usual *"YouTube terminates channels unfairly"*. It's rather about the wacky Brand Accounts system.
+I recently made a new Google account because my old email has been leaked in many places resulting in me receiving a lot of spam emails.
 
-You see, Brand Accounts in the present can be made and tied to a specific YouTube channel. You can then add Brand Account owners, and managers, essentially making your YouTube channel manageable by multiple people. This is very useful for large content creators who have teams working for them.
-
-Well, what happens when there are no owners on the Brand Account. Surely the Brand Account doesn't just get deleted right..., RIGHT?
-
-<img class="img" style="height:24em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/nuked.webp" alt="Illustration of my YouTube channel getting nuked" />
-
-<span style="color:var(--tertiary)">Bad news.</span> When you have a Brand Account that doesn't have any owners, the Brand Account simply gets nuked from existence. No emails, no cooldown period, nothing. Even if there's a manager on the Brand Account.
-
-## How was my Brand Account deleted?
-
-I recently made a new Google account because my old email has been leaked in many places and that resulted in a lot of spam emails.
+<img class="img dark-img" loading="lazy" style="height:12em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/transfer.webp" alt="Illustration of me giving myself my YouTube channel's ownership" />
+<img class="img light-img" loading="lazy" style="height:12em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/transfer-light.webp" alt="Illustration of me giving myself my YouTube channel's ownership" />
 
 I decided that the new email is what I'm going to be using from now on, so I transferred my Brand Account over to my new Google Account, making the new Google Account the primary owner, while making the old Google Account a manager.
 
-<img class="img" style="height:12em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/transfer.webp" alt="Illustration of me giving myself my YouTube channel's ownership" />
+<img class="img dark-img" loading="lazy" style="height:12em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/ownership.webp" alt="Illustration of me owning 2 YouTube channels" />
+<img class="img light-img" loading="lazy" style="height:12em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/ownership-light.webp" alt="Illustration of me owning 2 YouTube channels" />
 
-Of course, my naive self thought *"Surely nothing can go wrong with this"*, but you probably already see where this is going.
+I've also created a personal YouTube account on the new Google Account, which is not tied to the Brand Account or the YouTube channel in any way.
 
-## Timeline
+## How was my Brand Account deleted?
 
-### Jan 6, 5:51 AM
+No, it's not the usual *"YouTube terminates channels unfairly"*. It's rather about the wacky Brand Accounts system and Google's horrible UX with it.
 
-My new Google Account was disabled for suspicious activity. I just had to add a phone number though, so that wasn't really a problem for me.
+You see, Brand Accounts in the present can be made and tied to a specific YouTube channel. You can then add Brand Account owners and managers, essentially making your YouTube channel manageable by multiple people. This is very useful for large content creators who have teams working for them.
 
-### Jan 6, 1:07 PM
+---
 
-I've recovered the new Google account.
+Well, what happens if you try to delete the **YouTube service data** of the **Brand Account's primary owner**? Surely this unrelated action wouldn't result in the unforseen deletion of the **entire Brand Account**, right?
 
-### Jan 10, 11:02 AM
+<img class="img dark-img" loading="lazy" style="height:16em;margin-block:2rem" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/deletion.webp" alt="Illustration of my YouTube channel being deleted" />
+<img class="img light-img" loading="lazy" style="height:16em;margin-block:2rem" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/deletion-light.webp" alt="Illustration of my YouTube channel being deleted" />
 
-I've noticed my YouTube channel was gone from every account switcher.
+<sub>As you've probably guessed, it does.</sub>
 
-### Jan 10, 11:32 AM
+<br />
+<br />
 
-I've contacted YouTube support regarding the issue.
+If you're still confused, let me break it down for you. This is what I had:
 
-### Jan 10, 9:40 PM
+- **Owner**
+  - **Personal Account**
+    - **YouTube channel**
+  - **Brand Account**
+    - **YouTube channel**
 
-YouTube Support finally responded, being unable to restore my YouTube channel.
+When you attempt to delete the YouTube service data of **Owner** *(intending to delete the **Personal Account**'s **YouTube channel**)*...
 
-## So what happened?
+For some reason, Google decides to delete **ALL** **YouTube channel**s, including the **Brand Account**'s. And since the **Brand Account** is now empty, Google automatically deletes the **Brand Account** as well.
 
-Apparently, because my new Google account had been disabled earlier. My Brand Account was also deleted automatically because there was no "active owner" on the Brand Account (only a manager, which was my old Google account).
+---
 
-<img class="img" style="height:16em;margin-block:2rem" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/deletion.webp" alt="Illustration of my YouTube channel being deleted" />
+Not to mention, the **Remove YouTube content** page of **Owner** does not even mention that it will delete the Brand Account's YouTube channels! Why, Google?
 
-This deletion happened immediately and I have no emails or notification regarding it happening. I've only realized it was deleted because I was trying to log in to it but it wasn't there in the account switcher.
+<img class="img" style="height:28em;margin-block:2rem;border-radius:1rem" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/remove-youtube-content-page.webp" alt="The 'Remove YouTube content' page" />
 
-## Don't do this mistake
+## So, what should you not do?
 
-So what can you learn from this? **ALWAYS** have a spare Google account as an **Owner** on your Brand Account. This way, if one of the owner accounts gets disabled, the Brand Account won't be automatically deleted.
+**Don't delete YouTube service data when you have ownership of a Brand Account.** It's as simple as that.
 
-<img class="img" style="height:12em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/spare.webp" alt="Illustration of me giving myself my YouTube channel's ownership while still having the ownership" />
+If you really need to, try transfering ownership to another account and kicking yourself off the Brand Account before attempting.
 
-That may sound like a security risk, but it's better than waking up and realizing your YouTube channel is gone forever. Just secure the spare account with 2FA, and that'd probably already be good enough.
-
-I've also made a few suggestions via the support feedback form, so they can fix this issue.
+<sub>I have not tested this, but it *should* work.</sub>
 
 ## Thank you!
 
 Thank you for reading to the end! I hope it was at least entertaining to go through my rant.
 
 If you want more blog posts like this, let me know somewhere, whether that'd be mentioning me on Discord or just sending an email *([contact info here!](/#contact))*.
+
+---
+
+Anyway, here's an image that I was gonna put on the post, but it got scrapped:
+
+<img class="img dark-img" style="height:24em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/nuked.webp" alt="Illustration of my YouTube channel getting nuked" />
+<img class="img light-img" style="height:24em" src="/assets/blog/my-youtube-channel-is-gone-dont-do-this-mistake/nuked-light.webp" alt="Illustration of my YouTube channel getting nuked" />
