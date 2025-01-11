@@ -50,7 +50,7 @@ export default (() => {
                         useful things look good and accessible to everyone.
                     </p>
                 </Column>
-                <Row as="ul" data-no-marker="true" gap="md" centerHorizontal wrap aria-label="My socials">
+                <Row id="contact" as="ul" data-no-marker="true" gap="md" centerHorizontal wrap aria-label="My socials">
                     <For each={Object.values(Socials)}>
                         {social => (
                             <li>

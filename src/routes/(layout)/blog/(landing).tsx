@@ -62,4 +62,4 @@ const fetchPosts = () =>
             const { default: _, ...postInfo } = await post()
             return [href, postInfo] as const
         }),
-    ).then(list => list.sort((a, b) => b[1].posted.getTime() - a[1].posted.getTime()))
+    ).then(list => list.sort((a, b) => b[1].posted.getTime() - a[1].posted.getTime()).filter(x => !x[1].hidden))
