@@ -12,12 +12,10 @@ import IconReport from '~/assets/icons/report.svg'
 
 import sharedStyles from '~/styles/shared.module.css'
 
-const FourOhFourPage: Component<{ withoutDocTitle?: boolean }> = props => (
+const FourOhFourPage: Component = () => (
     <Page noCrawl noSetCanonical>
         <Link rel="canonical" href="https://palmdevs.me" />
-        <Show when={!props.withoutDocTitle}>
-            <Title>404 • Palm (PalmDevs)</Title>
-        </Show>
+        <Title>404 • Palm (PalmDevs)</Title>
         <Meta name="description" content="This page doesn't exist. Did you take a wrong turn?" />
         <HttpStatusCode code={404} />
         <Section id="info">
