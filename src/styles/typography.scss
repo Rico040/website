@@ -43,12 +43,15 @@ h6 {
   margin-block-end: var(--gap-smaller);
 }
 
+h1, h2 {
+  text-wrap: balance;
+}
+
 h1,
 h2,
 h3 {
   color: var(--neutral-high);
   line-height: var(--line-height-heading);
-  text-wrap: balance;
 }
 
 h1 {
