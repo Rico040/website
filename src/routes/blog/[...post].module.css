@@ -127,6 +127,10 @@
 			opacity: 1 !important;
 		}
 	}
+
+	& ul {
+		margin-inline-start: -1.25em;
+	}
 }
 
 /* Increasing specificity */
