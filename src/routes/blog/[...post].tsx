@@ -1,6 +1,6 @@
 import { Meta, Title } from '@solidjs/meta'
 import { createAsync, useParams } from '@solidjs/router'
-import { ErrorBoundary, Match, Show, Suspense, Switch, createSignal, lazy, onCleanup, onMount } from 'solid-js'
+import { Show, Suspense, createSignal, lazy, onCleanup, onMount } from 'solid-js'
 import { MDXProvider } from 'solid-mdx'
 import { format } from 'timeago.js'
 
@@ -28,7 +28,14 @@ export default () => {
     })
 
     return (
-        <Suspense fallback={<Page>Loading post...</Page>}>
+        <Suspense
+            fallback={
+                <Page>
+                    Loading post...
+                    <Title>Loading... • Palm (PalmDevs)</Title>
+                </Page>
+            }
+        >
             <Show when={postInfo()} keyed fallback={<FourOhFourPage />}>
                 {info => {
                     const [formattedTime, setFormattedTime] = createSignal(format(info.posted))
