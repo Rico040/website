@@ -1,27 +1,27 @@
 :root,
 :root[data-theme="light"] {
-	--bg: #f4f9ff;
+	--bg: #f7f4ff;
 
 	--gradient: linear-gradient(
 		230deg,
 		var(--gradient-primary) 25%,
 		var(--gradient-secondary) 70.95%
 	);
-	--gradient-primary: #29a873;
-	--gradient-secondary: #007cfa;
+	--gradient-primary: #9944da;
+	--gradient-secondary: #307adb;
 
 	--neutral-highest: #000000;
 	--neutral-high: #202020;
 	--neutral-medium: #2c2c2c;
-	--neutral-lowest: #566472;
+	--neutral-lowest: #645672;
 
-	--neutral-variant-high: #00468b;
-	--neutral-variant-low: #39485c;
+	--neutral-variant-high: #4e208a;
+	--neutral-variant-low: #44395c;
 
-	--surface-highest: #c2ced6;
-	--surface-high: #d1d6df;
-	--surface-medium: #e1e7f2;
-	--surface-low: #f2f7ff;
+	--surface-highest: #c9c2d6;
+	--surface-high: #cfc8df;
+	--surface-medium: #e4def5;
+	--surface-low: #f3efff;
 
 	--surface-high-full-opacity: var(--surface-high);
 	--surface-medium-full-opacity: var(--surface-medium);
@@ -30,56 +30,56 @@
 	--surface-medium-high-opacity: var(--surface-medium);
 	--surface-low-high-opacity: var(--surface-low);
 
-	--primary: #006fe9;
+	--primary: #4d31ee;
 	--on-primary: #ebf9ff;
 
-	--secondary: #2b3f48;
-	--on-secondary: #dddddd;
+	--secondary: #2d2b48;
+	--on-secondary: #eeeeee;
 
-	--tertiary: #3c444e;
+	--tertiary: #443c4e;
 
 	--interaction-glow: rgba(0, 0, 0, 0.075);
 }
 
 :root[data-theme="dark"] {
-	--bg: #0e1114;
+	--bg: #0e0e14;
 	--bg-orb: radial-gradient(
 		circle at 50% 50%,
-		rgba(0, 194, 255, 0.07) 0%,
-		rgba(0, 212, 173, 0.03) 45%,
-		rgba(1, 255, 157, 0) 70%
+		hsla(231, 100%, 63%, 0.08) 0%,
+		hsla(263, 100%, 72%, 0.05) 45%,
+		hsla(263, 100%, 78%, 0) 70%
 	);
 
-	--gradient-primary: #4feaa9;
-	--gradient-secondary: #57b7d9;
+	--gradient-primary: #b770ee;
+	--gradient-secondary: #509cff;
 
 	--neutral-highest: #ffffff;
 	--neutral-high: #dddddd;
 	--neutral-medium: #cccccc;
-	--neutral-lowest: #7f8b96;
+	--neutral-lowest: #817f96;
 
-	--neutral-variant-high: #81b0c3;
-	--neutral-variant-low: #9da8ac;
+	--neutral-variant-high: #8881c3;
+	--neutral-variant-low: #9690ac;
 
-	--surface-high-full-opacity: hsla(204, 14%, 15%, 1);
-	--surface-medium-full-opacity: hsla(204, 14%, 13%, 1);
-	--surface-low-full-opacity: hsla(204, 14%, 11%, 1);
+	--surface-high-full-opacity: rgb(35, 33, 44);
+	--surface-medium-full-opacity: rgb(31, 29, 38);
+	--surface-low-full-opacity: rgb(25, 24, 32);
 
-	--surface-medium-high-opacity: hsla(220, 23%, 19%, 0.65);
-	--surface-low-high-opacity: hsla(220, 20%, 15%, 0.65);
+	--surface-medium-high-opacity: hsla(253, 24%, 19%, 0.65);
+	--surface-low-high-opacity: hsla(253, 19%, 15%, 0.65);
 
-	--surface-highest: hsla(216, 20%, 34%, 0.15);
-	--surface-high: hsla(216, 18%, 32%, 0.15);
-	--surface-medium: hsla(220, 23%, 28%, 0.15);
-	--surface-low: hsla(220, 20%, 24%, 0.15);
+	--surface-highest: hsla(253, 20%, 24%, 0.4);
+	--surface-high: hsla(253, 20%, 24%, 0.3);
+	--surface-medium: hsla(253, 20%, 24%, 0.2);
+	--surface-low: hsla(253, 20%, 24%, 0.15);
 
-	--primary: #4ac9ff;
-	--on-primary: #003247;
+	--primary: #888aee;
+	--on-primary: #000147;
 
-	--secondary: #253c57;
+	--secondary: #29233d;
 	--on-secondary: #eeeeee;
 
-	--tertiary: #87b0c1;
+	--tertiary: #9487c1;
 
 	--interaction-glow: rgba(255, 255, 255, 0.025);
 }
