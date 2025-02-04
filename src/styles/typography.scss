@@ -1,5 +1,5 @@
 @use "queries";
-@import url("https://fonts.bunny.net/css?family=inter:500,600,700|jetbrains-mono:400&display=swap");
+@import url("https://fonts.bunny.net/css?family=inter:500,600,700|jetbrains-mono:400|outfit:700&display=swap");
 
 :root {
   --line-height: 1.5;
@@ -50,6 +50,7 @@ h1, h2 {
 h1,
 h2,
 h3 {
+  font-family: "Outfit";
   color: var(--neutral-high);
   line-height: var(--line-height-heading);
 }

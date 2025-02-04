@@ -28,7 +28,7 @@ export default createHandler(() => {
                         <link rel="preconnect" href="https://fonts.bunny.net" as="font" />
                         <link
                             rel="preload"
-                            href="https://fonts.bunny.net/css?family=inter:500,600,700|jetbrains-mono:400&display=swap"
+                            href="https://fonts.bunny.net/css?family=inter:500,600,700|jetbrains-mono:400|outfit:700&display=swap"
                             as="style"
                         />
                         {assets}
