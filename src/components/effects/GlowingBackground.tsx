@@ -1,4 +1,4 @@
-import { type Component, For, type JSX, createEffect, createSignal, onCleanup, onMount, useContext } from 'solid-js'
+import { type Component, For, type JSX, createEffect, createSignal, on, onCleanup, onMount, useContext } from 'solid-js'
 import { Portal } from 'solid-js/web'
 
 import { ThemeContext } from '~/contexts'
@@ -35,38 +35,44 @@ const GlowingBackground: Component<{
     })
 
     // More conditions to disable effects
-    createEffect(() => {
-        const afterMeasure = () => {
-            if (theme.colorScheme !== 'dark') {
-                log('log', 'Not using dark color scheme, disabling')
-            } else {
-                log('log', 'No conditions matched, effect is enabled')
-                return setEffectDisabled(false)
-            }
+    createEffect(
+        on(
+            () => theme.colorScheme,
+            colorScheme => {
+                const afterMeasure = () => {
+                    if (colorScheme !== 'dark') {
+                        log('log', 'Not using dark color scheme, disabling')
+                    } else {
+                        log('log', 'No conditions matched, effect is enabled')
+                        return setEffectDisabled(false)
+                    }
 
-            setEffectDisabled(true)
-        }
+                    setEffectDisabled(true)
+                }
 
-        if (!document.hasFocus()) {
-            log('warn', 'Document is not focused, cannot measure paint time')
-            return afterMeasure()
-        }
+                if (!document.hasFocus()) {
+                    log('warn', 'Document is not focused, cannot measure paint time')
+                    return afterMeasure()
+                }
 
-        const start = performance.now()
-        runAfterFramePaint(() => {
-            const paintTime = performance.now() - start
-            log('log', `Paint time is ${paintTime}ms`)
+                // Make sure we're in a frame
+                runAfterFramePaint(() => {
+                    const start = performance.now()
+                    runAfterFramePaint(() => {
+                        const paintTime = performance.now() - start
+                        log('log', `Paint time is ${paintTime}ms`)
 
-            // 25ms should be enough for most cases
-            // Any device taking longer than this can only render at around 40fps, which is slow...
-            if (paintTime > (props.maxPaintTime ?? 20)) {
-                log('warn', 'Component visuals disabled due to high paint time')
-                return setEffectDisabled(true)
-            }
+                        if (paintTime > (props.maxPaintTime ?? 15)) {
+                            log('warn', 'Component visuals disabled due to high paint time')
+                            return setEffectDisabled(true)
+                        }
 
-            afterMeasure()
-        })
-    })
+                        afterMeasure()
+                    })
+                })
+            },
+        ),
+    )
 
     const handleRef = (ref: HTMLDivElement) => {
         // Handle effect disables & parallax scroll
