@@ -10,7 +10,7 @@
     "format": "biome check --apply ."
   },
   "dependencies": {
-    "@shikijs/transformers": "^1.26.1",
+    "@shikijs/transformers": "^1.29.2",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.13.6",
     "@solidjs/start": "^1.0.11",
@@ -23,18 +23,18 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@shikijs/rehype": "^1.26.1",
-    "@shikijs/twoslash": "^1.26.1",
+    "@shikijs/rehype": "^1.29.2",
+    "@shikijs/twoslash": "^1.29.2",
     "@vinxi/plugin-mdx": "^3.7.2",
     "rehype-pretty-code": "^0.13.2",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
-    "sass": "^1.83.1",
+    "sass": "^1.83.4",
     "solid-mdx": "^0.0.7",
     "vinxi": "^0.4.3",
     "vite-plugin-solid-svg": "^0.8.1"
   },
-  "trustedDependencies": ["@biomejs/biome", "esbuild"],
+  "trustedDependencies": ["@biomejs/biome", "@parcel/watcher", "esbuild"],
   "patchedDependencies": {
     "solid-mdx@0.0.7": "patches/solid-mdx@0.0.7.patch",
     "@vinxi/plugin-mdx@3.7.2": "patches/@vinxi%2Fplugin-mdx@3.7.2.patch",
