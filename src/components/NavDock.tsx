@@ -15,7 +15,7 @@ import type { Component } from 'solid-js'
 import type { IconType } from '.'
 import type { FlexHelperProps } from './Page'
 
-import styles from './NavDock.module.css'
+import styles from './NavDock.module.scss'
 
 const NavDock: Component<NavDockProps> = props => {
     const isRouting = useIsRouting()

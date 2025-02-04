@@ -5,7 +5,7 @@ import { combineClassNames, undefinedIf } from '~/utils'
 
 import type { Component, ComponentProps, JSX } from 'solid-js'
 
-import styles from './Touchable.module.css'
+import styles from './Touchable.module.scss'
 
 const Touchable = <E extends ElementType>(
     props: TouchableProps<E> & Omit<ComponentProps<E>, keyof TouchableProps<E>>,

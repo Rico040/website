@@ -4,6 +4,10 @@
 
 	transition: var(--duration-medium) var(--easing-quick);
 
+	& > * {
+		z-index: var(--layer-content);
+	}
+
 	&:active {
 		transform: scale(var(--interaction-click-scale));
 	}
