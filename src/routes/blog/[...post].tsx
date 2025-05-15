@@ -32,7 +32,7 @@ export default () => {
             fallback={
                 <Page>
                     Loading post...
-                    <Title>Loading... • Palm (PalmDevs)</Title>
+                    <Title>Loading... • Plap (PlapDevs)</Title>
                 </Page>
             }
         >
@@ -50,7 +50,7 @@ export default () => {
 
                     return (
                         <BlogLayout>
-                            <Title>{`${info.title} • Palm (PalmDevs)`}</Title>
+                            <Title>{`${info.title} • Plap (PlapDevs)`}</Title>
                             <Meta name="description" content={info.description} />
                             <div class={styles.Post}>
                                 <Column

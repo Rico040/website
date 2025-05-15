@@ -68,8 +68,8 @@ const GlobalLayout: Component<{ children: JSX.Element }> = props => {
             />
             <NavDock
                 pages={[
-                    { name: 'Home', href: '/', icon: IconHome },
-                    { name: 'Blog', href: '/blog', icon: IconBlog, matchSubroutes: true },
+                    { name: 'Home of PLAPS', href: '/', icon: IconHome },
+                    { name: 'Blog of PLAPPING', href: '/blog', icon: IconBlog, matchSubroutes: true },
                 ]}
                 links={[
                     {

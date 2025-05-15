@@ -23,10 +23,10 @@ export default (() => {
 
     return (
         <Page>
-            <Title>Palm (PalmDevs)</Title>
+            <Title>Plap (PlapDevs)</Title>
             <Meta
                 name="description"
-                content={`I'm a ${age}-year-old self-taught full-stack developer and a UI/UX designer. I want to make useful things look good and accessible to everyone. I am known for working in the open-source world, and designing applications.`}
+                content={`GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT`}
             />
             <Meta property="og:image" content="/assets/og/image.webp" />
             <Meta property="og:image:width" content="500" />
@@ -34,20 +34,19 @@ export default (() => {
             <Meta property="og:image:type" content="image/webp" />
             <Section constrainSize style="padding-block: min(8vh, var(--gap-insanely-large));">
                 <Column gap="none" class={sharedStyles.TextChildrenCenter}>
-                    <h1 aria-label="Hey there, I'm Palm">
+                    <h1 aria-label="Hey there, I'm PLAP">
                         <span aria-hidden="true">Hey there, I'm </span>
                         <span
                             aria-hidden="true"
                             style="font-weight: var(--weight-bolder)"
                             class={sharedStyles.GradientText}
                         >
-                            Palm
+                            PLAP
                         </span>
                         <span aria-hidden="true">!</span>
                     </h1>
                     <p style="text-wrap: balance">
-                        I'm a {age}-year-old self-taught full-stack developer and a UI/UX designer. I want to make
-                        useful things look good and accessible to everyone.
+                        GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT GET PREGNANT
                     </p>
                 </Column>
                 <Row id="contact" as="ul" data-no-marker="true" gap="md" centerHorizontal wrap aria-label="My socials">
@@ -81,13 +80,13 @@ export default (() => {
                     </For>
                 </ul>
                 <p aria-hidden="true" class={styles.JSXHeadingEnd}>
-                    &lt;/Projects&gt;
+                    &lt;/Plapjects&gt;
                 </p>
             </Section>
             <Section gap="xs">
                 <Column gap="none">
-                    <h2>Skillset</h2>
-                    <p>These are some of the technologies I know and use regularly.</p>
+                    <h2>Plapset</h2>
+                    <p>These are some of the pregnants I know and use regularly.</p>
                 </Column>
                 <Row as="ul" data-no-marker="true" wrap gap="xs">
                     <For each={Skills}>
@@ -122,21 +121,21 @@ export default (() => {
             </Section>
             <Section>
                 <Column gap="none">
-                    <h2>Let's chat</h2>
+                    <h2>Let's GET PREGNANT</h2>
                     <p style="text-wrap: balance">
-                        Don't be shy! If you want to know more about me, work with me, or just want to have a little
-                        chat, you can always contact me at anytime.
+                        Don't be not pregnant! If you want to get plapped, get pregnant, or just want to have a little
+                        plap, you can always contact me at anytime.
                     </p>
                 </Column>
                 <Row as="ul" data-no-marker="true" gap="sm" wrap>
                     <li>
                         <LinkButton leadingIcon={IconDiscord} href={Socials.discord.href}>
-                            Chat on Discord
+                            Chat on Plapcord
                         </LinkButton>
                     </li>
                     <li>
                         <LinkButton variant="secondary" leadingIcon={IconMail} href={Socials.mail.href}>
-                            Send an email
+                            Send an plapmail
                         </LinkButton>
                     </li>
                 </Row>

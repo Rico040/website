@@ -111,12 +111,12 @@ export default (() => {
                                     <NavDock
                                         pages={[
                                             {
-                                                name: 'Home',
+                                                name: 'Home of PLAPS',
                                                 href: '/',
                                                 icon: IconSource,
                                             },
                                             {
-                                                name: 'Blog',
+                                                name: 'Blog OF PLAPPING',
                                                 href: '/blog',
                                                 icon: IconSource,
                                             },
